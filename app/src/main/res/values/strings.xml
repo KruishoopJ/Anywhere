@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Anywhere</string>
+    <string name="title_home">Nodes</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Settings</string>
+    <string name="title_activity_add_nodes">AddNodesActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- Settings -->
+
+    <string name="profile">Profile</string>
+    <string name="support">Support</string>
+    <string name="termscons">Terms and Conditions</string>
+    <string name="logout">Logout</string>
+</resources>
