@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.vision.CameraSource;
+
 import nl.johnbaaij.anywhere.R;
 
 public class QRCodeScanner extends Fragment {
@@ -25,6 +27,7 @@ public class QRCodeScanner extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.qrcode_scanner_fragment, container, false);
     }
 

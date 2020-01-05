@@ -14,6 +14,30 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             />
-
     </com.google.android.material.appbar.AppBarLayout>
+
+    <SurfaceView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:id="@+id/qrCodeScanner"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/qrText"
+        android:layout_marginTop="50dp"
+        android:text="Scan a QR code please"
+        android:layout_gravity="center"/>
+
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/openQrScanner"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:text="Open Scanner"-->
+<!--        android:layout_gravity="center"-->
+<!--        style="@style/Widget.AppCompat.Button.Colored"-->
+<!--        android:onClick="openCamera"/>-->
+
+
 </LinearLayout>
