@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "105325387317-i7f71ba5mir7euis2aco5st16nlggkhs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nl.johnbaaij.anywhere",
+            "certificate_hash": "fe2089f2d187e1ec58e14e7842a99c918563633e"
+          }
+        },
+        {
           "client_id": "105325387317-qjg5knhgjbvps7klf4rcfg3me3u779dd.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
