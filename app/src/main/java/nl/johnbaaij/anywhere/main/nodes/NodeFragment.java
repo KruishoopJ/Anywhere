@@ -21,11 +21,12 @@ import java.util.ArrayList;
 
 import nl.johnbaaij.anywhere.AddNodesActivity;
 import nl.johnbaaij.anywhere.R;
+import nl.johnbaaij.anywhere.interfaces.initToolbar;
 
 import static android.graphics.drawable.ClipDrawable.HORIZONTAL;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-public class NodeFragment extends Fragment implements View.OnClickListener {
+public class NodeFragment extends Fragment implements View.OnClickListener, initToolbar {
 
     private NodeViewModel nodeViewModel;
 
@@ -46,8 +47,8 @@ public class NodeFragment extends Fragment implements View.OnClickListener {
 
         mButton = root.findViewById(R.id.addNodeButton);
         mButton.setOnClickListener(this);
+        setToolbarTitle(getString(R.string.title_home));
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Home");
 
         initNodeText();
         initRecyclerView(root);
@@ -88,5 +89,10 @@ public class NodeFragment extends Fragment implements View.OnClickListener {
                 openAddNodeActivity();
         }
 
+    }
+
+    @Override
+    public void setToolbarTitle(String title) {
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(title);
     }
 }

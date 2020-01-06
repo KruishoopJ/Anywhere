@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("My Toolbar");
 
         setSupportActionBar(toolbar);
         BottomNavigationView navView = findViewById(R.id.nav_view);

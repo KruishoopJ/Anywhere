@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -18,10 +19,11 @@ import nl.johnbaaij.anywhere.AddNodesActivity;
 import nl.johnbaaij.anywhere.QRCodeScannerActivity;
 import nl.johnbaaij.anywhere.R;
 import nl.johnbaaij.anywhere.addNodes.QRCodeScanner.QRCodeScanner;
+import nl.johnbaaij.anywhere.interfaces.initToolbar;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-public class DashboardFragment extends Fragment implements View.OnClickListener{
+public class DashboardFragment extends Fragment implements View.OnClickListener, initToolbar {
 
     private DashboardViewModel dashboardViewModel;
 
@@ -29,6 +31,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener{
         dashboardViewModel = ViewModelProviders.of(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
         super.onCreate(savedInstanceState);
+        setToolbarTitle(getString(R.string.title_dashboard));
 
         Button qrCodeButton = root.findViewById(R.id.buttonQrCode);
         qrCodeButton.setText("QR scanner");
@@ -60,5 +63,11 @@ public class DashboardFragment extends Fragment implements View.OnClickListener{
         Log.d(TAG, "created intent");
         startActivity(intent);
         Log.d(TAG, "Started intent");
+    }
+
+    @Override
+    public void setToolbarTitle(String title) {
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(title);
+
     }
 }
