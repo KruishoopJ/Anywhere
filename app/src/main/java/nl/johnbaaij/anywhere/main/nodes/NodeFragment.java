@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -33,6 +35,7 @@ public class NodeFragment extends Fragment implements View.OnClickListener {
 
 
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -43,6 +46,8 @@ public class NodeFragment extends Fragment implements View.OnClickListener {
 
         mButton = root.findViewById(R.id.addNodeButton);
         mButton.setOnClickListener(this);
+
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Home");
 
         initNodeText();
         initRecyclerView(root);

@@ -107,12 +107,8 @@ public class NotificationsFragment extends Fragment implements SettingsRecyclerV
                     }
                 });
 
-                alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
+                alert.setNegativeButton("No", null
+                );
 
                 alert.create().show();
 

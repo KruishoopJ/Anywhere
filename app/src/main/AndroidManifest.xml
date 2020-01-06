@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.CAMERA"></uses-permission>
     <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -12,9 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.settings.TermsConActivity"></activity>
+        <activity android:name=".main.settings.TermsConActivity"/>
         <activity android:name=".main.settings.SupportActivity" />
         <activity android:name=".main.settings.ProfileActivity" />
+        <activity android:name=".LoginActivity"/>
         <activity
             android:name=".AddNodesActivity"
             android:label="@string/title_activity_add_nodes"

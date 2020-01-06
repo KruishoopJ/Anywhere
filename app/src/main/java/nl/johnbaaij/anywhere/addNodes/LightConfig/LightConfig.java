@@ -7,16 +7,28 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import nl.johnbaaij.anywhere.R;
+import java.util.ArrayList;
 
-public class LightConfig extends Fragment {
+import nl.johnbaaij.anywhere.R;
+import nl.johnbaaij.anywhere.addNodes.ProgressRecyclerViewAdapter;
+import nl.johnbaaij.anywhere.interfaces.InitRecyclerView;
+
+import static android.graphics.drawable.ClipDrawable.HORIZONTAL;
+
+public class LightConfig extends Fragment implements InitRecyclerView {
 
     private LightConfigViewModel mViewModel;
+
+    private ArrayList<String> mSettingLabels = new ArrayList<>();
+
 
     public static LightConfig newInstance() {
         return new LightConfig();
@@ -35,4 +47,15 @@ public class LightConfig extends Fragment {
         // TODO: Use the ViewModel
     }
 
+    @Override
+    public void initRecyclerView(View root) {
+        RecyclerView recyclerView = root.findViewById(R.id.ProgressBarArea);
+        DividerItemDecoration itemDecor = new DividerItemDecoration(getActivity(), HORIZONTAL);
+        recyclerView.addItemDecoration(itemDecor);
+        ProgressRecyclerViewAdapter adapter = new ProgressRecyclerViewAdapter(mSettingLabels, getActivity());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+    }
 }
