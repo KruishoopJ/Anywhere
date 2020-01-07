@@ -15,6 +15,13 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="0dp" />
 
-
+    <ImageView
+        android:id="@+id/gatewayImage"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_vertical"
+        android:layout_centerVertical="true"
+        android:src="@drawable/gateway" />
 </RelativeLayout>
 

@@ -10,11 +10,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import nl.johnbaaij.anywhere.addNodes.QRCodeScannerActivity;
 import nl.johnbaaij.anywhere.R;
@@ -24,11 +29,14 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class GatewayConnect extends Fragment {
 
+    // Declare globally
+    private int position = -1;
+    private int countGatewayAnimations = 0;
+    ImageView MyImageView;
+    Timer mTimer = new Timer();
+    int[] imageArray = { R.drawable.gateway, R.drawable.gateway_zend };
+
     private GatewayConnectViewModel mViewModel;
-
-
-
-
 
     public static GatewayConnect newInstance() {
         return new GatewayConnect();
@@ -55,9 +63,50 @@ public class GatewayConnect extends Fragment {
             }
         });
 
+        // TODO: add delay to mock internet connection setup
+
+        // Set image view
+        MyImageView = root.findViewById(R.id.gatewayImage);
+
+        /**
+        * This timer will call each of the seconds.
+        **/
+        mTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+//                // Timer is not a Main/UI thread need to do all UI task on runOnUiThread
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run()
+                    {
+                        // increase your position
+                        position++;
+                        countGatewayAnimations ++;
+                        if (position >= imageArray.length) {
+                            position = 0;
+                        }
+
+                        // Set Image
+                        if (countGatewayAnimations == 5)
+                        {
+                            //Cancel and purge timer so code doesn't continue in QR-Code scanner
+                            mTimer.cancel();
+                            mTimer.purge();
+                            openQrCodeScanner();
+                        }
+                        MyImageView.setImageResource(imageArray[position]);
+                    }
+                });
+            }
+        }, 0, 1000);
 
 
         return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
