@@ -3,6 +3,7 @@ package nl.johnbaaij.anywhere.addNodes;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.util.Log;
 import android.util.SparseArray;
@@ -135,18 +136,36 @@ public class QRCodeScannerActivity extends AbstractToolbarActivity {
                             String scannedText = qrCodes.valueAt(0).displayValue;
                             cameraSource.stop();
                             boolean isQuantified = scannedText.indexOf("quantified") !=-1? true: false;
+
+                            // TODO: if scannedText already exists in database: Prompt: "Do you want to reinstall/move this node" or "this node is properly installed"
                             if(isQuantified){
-                                textView.setText(scannedText);
+                                saveToDatabase(scannedText);
+                                textView.setText("Installed node correctly");
                             } else{
                                 textView.setText("This is not a Quantified product :)");
                             }
+                            // Wait 200ms before opening camera
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                public void run() {
+                                    startCamera();
+                                }
+                            }, 100);
                         }
                     });
                 }
             }
         });
+    }
 
+    public void startCamera(){
+        Log.d(TAG, "call functie ");
 
+        finish();
+        startActivity(getIntent());
+    }
+
+    public void saveToDatabase(String scannedText){
 
     }
 }
