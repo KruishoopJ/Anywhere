@@ -62,7 +62,11 @@ public class QRCodeScannerActivity extends AbstractToolbarActivity {
         surfaceView = (SurfaceView) findViewById(R.id.qrCodeScanner);
         final TextView button = findViewById(R.id.buttonProgress);
 
+        // Init textview so the code can overwrite
         textView = (TextView) findViewById(R.id.ProgressText);
+
+        // Set textview to scan node
+        textView.setText("Scan node");
 
         //Initialise barcode detector
         barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
