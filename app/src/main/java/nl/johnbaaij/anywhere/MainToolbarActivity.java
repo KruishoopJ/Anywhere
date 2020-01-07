@@ -51,10 +51,10 @@ public class MainToolbarActivity extends AbstractToolbarActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        // Firebase authentication
-        if (currentUser == null){
-            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-            finish();
-        }
+        // Firebase authentication enabled
+//        if (currentUser == null){
+//            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+//            finish();
+//        }
     }
 }
