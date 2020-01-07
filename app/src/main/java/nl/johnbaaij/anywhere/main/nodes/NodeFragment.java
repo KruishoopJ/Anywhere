@@ -9,9 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,12 +18,12 @@ import java.util.ArrayList;
 
 import nl.johnbaaij.anywhere.AddNodesActivity;
 import nl.johnbaaij.anywhere.R;
-import nl.johnbaaij.anywhere.interfaces.initToolbar;
+import nl.johnbaaij.anywhere.abstractClasses.AbstractFragment;
 
 import static android.graphics.drawable.ClipDrawable.HORIZONTAL;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-public class NodeFragment extends Fragment implements View.OnClickListener, initToolbar {
+public class NodeFragment extends AbstractFragment implements View.OnClickListener {
 
     private NodeViewModel nodeViewModel;
 
@@ -91,8 +88,5 @@ public class NodeFragment extends Fragment implements View.OnClickListener, init
 
     }
 
-    @Override
-    public void setToolbarTitle(String title) {
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(title);
-    }
+
 }

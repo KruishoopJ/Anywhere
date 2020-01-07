@@ -8,30 +8,34 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 
+import nl.johnbaaij.anywhere.LoginActivity;
 import nl.johnbaaij.anywhere.R;
-import nl.johnbaaij.anywhere.main.nodes.NodeRecycleViewAdapter;
+import nl.johnbaaij.anywhere.abstractClasses.AbstractFragment;
 
 import static android.graphics.drawable.ClipDrawable.HORIZONTAL;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-public class NotificationsFragment extends Fragment implements SettingsRecyclerViewAdaper.OnSettingListener {
+public class NotificationsFragment extends AbstractFragment implements SettingsRecyclerViewAdaper.OnSettingListener {
 
     private NotificationsViewModel notificationsViewModel;
+    private FirebaseAuth mAuth;
+
 
     private ArrayList<String> mSettingLabels = new ArrayList<>();
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -46,7 +50,8 @@ public class NotificationsFragment extends Fragment implements SettingsRecyclerV
         });
         initNodeText();
         initRecyclerView(root);
-
+        setToolbarTitle(getString(R.string.title_notifications));
+        mAuth = FirebaseAuth.getInstance();
         return root;
     }
 
@@ -87,11 +92,11 @@ public class NotificationsFragment extends Fragment implements SettingsRecyclerV
                 startActivity(intent);
                 break;
             case 1:
-                intent = new Intent(getActivity(), SupportActivity.class);
+                intent = new Intent(getActivity(), SupportToolbarActivity.class);
                 startActivity(intent);
                 break;
             case 2:
-                intent = new Intent(getActivity(), TermsConActivity.class);
+                intent = new Intent(getActivity(), TermsConToolbarActivity.class);
                 startActivity(intent);
                 break;
             case 3:
@@ -101,8 +106,9 @@ public class NotificationsFragment extends Fragment implements SettingsRecyclerV
                 alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
-                        Log.d(TAG, "onClick: Implement logout function");
+                        mAuth.signOut();
+                        startActivity(new Intent(getActivity(), LoginActivity.class));
+                        getActivity().finish();
 
                     }
                 });
@@ -120,4 +126,5 @@ public class NotificationsFragment extends Fragment implements SettingsRecyclerV
 
 
     }
+
 }

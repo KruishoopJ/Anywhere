@@ -10,20 +10,18 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import nl.johnbaaij.anywhere.AddNodesActivity;
 import nl.johnbaaij.anywhere.QRCodeScannerActivity;
 import nl.johnbaaij.anywhere.R;
-import nl.johnbaaij.anywhere.addNodes.QRCodeScanner.QRCodeScanner;
-import nl.johnbaaij.anywhere.interfaces.initToolbar;
+import nl.johnbaaij.anywhere.abstractClasses.AbstractFragment;
+
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-public class DashboardFragment extends Fragment implements View.OnClickListener, initToolbar {
+public class DashboardFragment extends AbstractFragment implements View.OnClickListener {
 
     private DashboardViewModel dashboardViewModel;
 
@@ -65,9 +63,5 @@ public class DashboardFragment extends Fragment implements View.OnClickListener,
         Log.d(TAG, "Started intent");
     }
 
-    @Override
-    public void setToolbarTitle(String title) {
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(title);
 
-    }
 }

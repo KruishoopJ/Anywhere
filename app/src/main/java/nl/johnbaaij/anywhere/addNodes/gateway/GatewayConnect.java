@@ -3,33 +3,37 @@ package nl.johnbaaij.anywhere.addNodes.gateway;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
+import nl.johnbaaij.anywhere.QRCodeScannerActivity;
 import nl.johnbaaij.anywhere.R;
-import nl.johnbaaij.anywhere.addNodes.ProgressRecyclerViewAdapter;
-import nl.johnbaaij.anywhere.interfaces.InitRecyclerView;
-import nl.johnbaaij.anywhere.main.settings.NotificationsViewModel;
 
-import static android.graphics.drawable.ClipDrawable.HORIZONTAL;
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
-public class GatewayConnect extends Fragment implements InitRecyclerView {
+
+public class GatewayConnect extends Fragment {
 
     private GatewayConnectViewModel mViewModel;
 
-    private ArrayList<String> mSettingLabels = new ArrayList<>();
+
+
 
 
     public static GatewayConnect newInstance() {
@@ -44,13 +48,20 @@ public class GatewayConnect extends Fragment implements InitRecyclerView {
                 ViewModelProviders.of(this).get(GatewayConnectViewModel.class);
 
         View root = inflater.inflate(R.layout.gateway_connect_fragment, container, false);
-        mViewModel.getText().observe(this, new Observer<String>() {
+
+        final Button button = root.findViewById(R.id.buttonProgress);
+        button.setText("Connection found");
+
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onChanged(@Nullable String s) {
+            public void onClick(View v) {
+                Log.d(TAG, "Gateway connect called");
+                openQrCodeScanner();
+
             }
         });
-        initNodeText();
-        initRecyclerView(root);
+
+
 
         return root;
     }
@@ -62,21 +73,16 @@ public class GatewayConnect extends Fragment implements InitRecyclerView {
         // TODO: Use the ViewModel
     }
 
-    @Override
-     public void initRecyclerView(View root) {
-
-        RecyclerView recyclerView = root.findViewById(R.id.ProgressBarArea);
-        DividerItemDecoration itemDecor = new DividerItemDecoration(getActivity(), HORIZONTAL);
-        recyclerView.addItemDecoration(itemDecor);
-        ProgressRecyclerViewAdapter adapter = new ProgressRecyclerViewAdapter(mSettingLabels, getActivity());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+    private void openQrCodeScanner(){
+        // TODO: build universal method with paramater -> class
+        Log.d(TAG, "openQrScanner called");
+        Intent intent = new Intent(getActivity(), QRCodeScannerActivity.class);
+        Log.d(TAG, "created intent");
+        startActivity(intent);
+        Log.d(TAG, "Started intent");
     }
 
-    private void initNodeText(){
-        mSettingLabels.add(getResources().getString(R.string.profile));
 
-    }
+
 
 }

@@ -68,8 +68,6 @@ public class SettingsRecyclerViewAdaper extends RecyclerView.Adapter<SettingsRec
 
         @Override
         public void onClick(View v) {
-
-
             mOnsettingListener.onSettingClick(getAdapterPosition());
 
         }

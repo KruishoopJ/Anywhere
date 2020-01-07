@@ -15,11 +15,12 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+import nl.johnbaaij.anywhere.abstractClasses.AbstractToolbarActivity;
 import nl.johnbaaij.anywhere.addNodes.ProgressRecyclerViewAdapter;
 
 import static android.graphics.drawable.ClipDrawable.HORIZONTAL;
 
-public class AddNodesActivity extends AppCompatActivity {
+public class AddNodesActivity extends AbstractToolbarActivity {
 
     private ArrayList<String> mSettingLabels = new ArrayList<>();
 
@@ -29,8 +30,7 @@ public class AddNodesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_add_nodes);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
 
     }
 

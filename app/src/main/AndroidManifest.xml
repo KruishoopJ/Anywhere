@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="nl.johnbaaij.anywhere">
 
-    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
-    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,10 +13,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.settings.TermsConActivity"/>
-        <activity android:name=".main.settings.SupportActivity" />
-        <activity android:name=".main.settings.ProfileActivity" />
-        <activity android:name=".LoginActivity"/>
+        <activity
+            android:name=".abstractClasses.AbstractToolbarActivity"
+            android:label="@string/title_activity_abstract"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".main.settings.TermsConToolbarActivity"
+            android:parentActivityName=".MainToolbarActivity"/>
+        <activity android:name=".main.settings.SupportToolbarActivity"
+            android:parentActivityName=".MainToolbarActivity"/>
+        <activity android:name=".main.settings.ProfileActivity"
+            android:parentActivityName=".MainToolbarActivity"/>
+        <activity android:name=".LoginActivity" />
         <activity
             android:name=".AddNodesActivity"
             android:label="@string/title_activity_add_nodes"
@@ -26,7 +33,7 @@
             android:label="@string/title_activity_qr_code_scanner"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MainActivity"
+            android:name=".MainToolbarActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
