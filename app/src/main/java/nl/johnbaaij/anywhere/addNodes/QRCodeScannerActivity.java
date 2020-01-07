@@ -34,12 +34,19 @@ public class QRCodeScannerActivity extends AbstractToolbarActivity {
     TextView textView;
     BarcodeDetector barcodeDetector;
 
+    int testData = 0;
+
 
     private void openNodeGroupNameActivity( ){
         // TODO: build universal method with paramater -> class
         Log.d(TAG, "NodeGroupNameActivity called");
         Intent intent = new Intent(getApplicationContext(), NodeGroupNameActivity.class);
         Log.d(TAG, "created intent");
+
+
+        //TODO pass real data from QR to NodeGroupNameActivity
+        intent.putExtra("dataFromQR", testData);
+
         startActivity(intent);
         Log.d(TAG, "Started intent");
     }

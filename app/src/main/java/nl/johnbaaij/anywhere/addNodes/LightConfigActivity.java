@@ -1,6 +1,8 @@
 package nl.johnbaaij.anywhere.addNodes;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -16,6 +18,7 @@ import android.widget.Button;
 import nl.johnbaaij.anywhere.MainToolbarActivity;
 import nl.johnbaaij.anywhere.R;
 import nl.johnbaaij.anywhere.abstractClasses.AbstractToolbarActivity;
+import nl.johnbaaij.anywhere.db.SQLiteDBHelper;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -36,6 +39,7 @@ public class LightConfigActivity extends AbstractToolbarActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                saveToDB();
                 openMainActivity();
 
             }
@@ -49,6 +53,17 @@ public class LightConfigActivity extends AbstractToolbarActivity {
         Log.d(TAG, "created intent");
         startActivity(intent);
         Log.d(TAG, "Started intent");
+    }
+
+
+    private void saveToDB() {
+        SQLiteDatabase database = new SQLiteDBHelper(this).getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(SQLiteDBHelper.NODE_GROUP_NAME, "test");
+        values.put(SQLiteDBHelper.NODE_AMOUNT,Math.random());
+        values.put(SQLiteDBHelper.NODE_LIGHT_CONFIG, "LED licht ofzo");
+        long newRowId = database.insert(SQLiteDBHelper.NODE_GROUP_TABLE, null, values);
+
     }
 
 }

@@ -20,6 +20,11 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class NodeGroupNameActivity extends AbstractToolbarActivity {
 
+
+
+    //TODO replace with real name that needs to be passed to the activity
+    String name = "demoName";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +51,8 @@ public class NodeGroupNameActivity extends AbstractToolbarActivity {
 
         Log.d(TAG, "NodeGroupNameActivity called");
         Intent intent = new Intent(getApplicationContext(), LightConfigActivity.class);
+        //TODO pass real name from this class to LightConfigActivity
+        intent.putExtra("groupName", name);
         Log.d(TAG, "created intent");
         startActivity(intent);
         Log.d(TAG, "Started intent");
