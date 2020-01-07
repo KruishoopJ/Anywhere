@@ -14,22 +14,43 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".addNodes.LightConfigActivity"
+            android:label="@string/title_activity_light_config"
+            android:parentActivityName=".addNodes.NodeGroupNameActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.johnbaaij.anywhere.addNodes.NodeGroupNameActivity" />
+        </activity>
+        <activity
+            android:name=".addNodes.NodeGroupNameActivity"
+            android:label="@string/title_activity_node_group_name"
+            android:parentActivityName=".addNodes.QRCodeScannerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.johnbaaij.anywhere.addNodes.QRCodeScannerActivity" />
+        </activity>
+        <activity
             android:name=".abstractClasses.AbstractToolbarActivity"
             android:label="@string/title_activity_abstract"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".main.settings.TermsConToolbarActivity"
-            android:parentActivityName=".MainToolbarActivity"/>
-        <activity android:name=".main.settings.SupportToolbarActivity"
-            android:parentActivityName=".MainToolbarActivity"/>
-        <activity android:name=".main.settings.ProfileActivity"
-            android:parentActivityName=".MainToolbarActivity"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".main.settings.TermsConToolbarActivity"
+            android:parentActivityName=".MainToolbarActivity" />
+        <activity
+            android:name=".main.settings.SupportToolbarActivity"
+            android:parentActivityName=".MainToolbarActivity" />
+        <activity
+            android:name=".main.settings.ProfileActivity"
+            android:parentActivityName=".MainToolbarActivity" />
         <activity android:name=".LoginActivity" />
         <activity
-            android:name=".AddNodesActivity"
+            android:name=".addNodes.GatewayActivity"
             android:label="@string/title_activity_add_nodes"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".QRCodeScannerActivity"
+            android:name=".addNodes.QRCodeScannerActivity"
             android:label="@string/title_activity_qr_code_scanner"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

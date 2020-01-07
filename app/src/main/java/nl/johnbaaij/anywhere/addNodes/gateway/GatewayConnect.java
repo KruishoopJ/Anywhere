@@ -1,6 +1,5 @@
 package nl.johnbaaij.anywhere.addNodes.gateway;
 
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
@@ -16,13 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
-
-import nl.johnbaaij.anywhere.QRCodeScannerActivity;
+import nl.johnbaaij.anywhere.addNodes.QRCodeScannerActivity;
 import nl.johnbaaij.anywhere.R;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;

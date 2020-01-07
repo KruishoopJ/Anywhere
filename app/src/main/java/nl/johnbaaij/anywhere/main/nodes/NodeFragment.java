@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import nl.johnbaaij.anywhere.AddNodesActivity;
+import nl.johnbaaij.anywhere.addNodes.GatewayActivity;
 import nl.johnbaaij.anywhere.R;
 import nl.johnbaaij.anywhere.abstractClasses.AbstractFragment;
 
@@ -70,7 +70,7 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
 
     private void openAddNodeActivity(){
 
-       Intent intent = new Intent(getActivity(), AddNodesActivity.class);
+       Intent intent = new Intent(getActivity(), GatewayActivity.class);
        startActivity(intent);
 
     }

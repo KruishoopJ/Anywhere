@@ -17,4 +17,6 @@
     <string name="termscons">Terms and Conditions</string>
     <string name="logout">Logout</string>
     <string name="title_activity_abstract">AbstractActivity</string>
+    <string name="title_activity_node_group_name">NodeGroupNameActivity</string>
+    <string name="title_activity_light_config">LightConfigActivity</string>
 </resources>

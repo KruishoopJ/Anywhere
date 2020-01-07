@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import nl.johnbaaij.anywhere.QRCodeScannerActivity;
+import nl.johnbaaij.anywhere.addNodes.QRCodeScannerActivity;
 import nl.johnbaaij.anywhere.R;
 import nl.johnbaaij.anywhere.abstractClasses.AbstractFragment;
 
