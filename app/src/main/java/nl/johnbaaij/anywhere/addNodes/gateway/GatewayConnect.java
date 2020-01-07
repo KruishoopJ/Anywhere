@@ -85,8 +85,7 @@ public class GatewayConnect extends Fragment {
                         if (position >= imageArray.length) {
                             position = 0;
                         }
-
-                        // Set Image
+                        
                         if (countGatewayAnimations == 5)
                         {
                             //Cancel and purge timer so code doesn't continue in QR-Code scanner
@@ -94,6 +93,7 @@ public class GatewayConnect extends Fragment {
                             mTimer.purge();
                             openQrCodeScanner();
                         }
+                        //Set text and image
                         MyImageView.setImageResource(imageArray[position]);
                     }
                 });

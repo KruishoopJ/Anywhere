@@ -59,7 +59,7 @@ public class QRCodeScannerActivity extends AbstractToolbarActivity {
 
         // Set values
         surfaceView = (SurfaceView) findViewById(R.id.qrCodeScanner);
-        final Button button = findViewById(R.id.buttonProgress);
+        final TextView button = findViewById(R.id.buttonProgress);
 
         textView = (TextView) findViewById(R.id.ProgressText);
 
