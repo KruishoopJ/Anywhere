@@ -18,10 +18,12 @@ public class NodeRecycleViewAdapter extends RecyclerView.Adapter<NodeRecycleView
 
 
     private ArrayList<String> mNodeGroupNames = new ArrayList<>();
+    private ArrayList<Integer> mNodeGroupAmount = new ArrayList<>();
     private Context mContext;
 
-    public NodeRecycleViewAdapter(ArrayList<String> mNodeGroupNames, Context mContext) {
+    public NodeRecycleViewAdapter(ArrayList<String> mNodeGroupNames, ArrayList<Integer> mNodeGroupAmount, Context mContext) {
         this.mNodeGroupNames = mNodeGroupNames;
+        this.mNodeGroupAmount = mNodeGroupAmount;
         this.mContext = mContext;
     }
 
