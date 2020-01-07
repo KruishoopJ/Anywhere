@@ -58,6 +58,9 @@ public class GatewayConnect extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "Gateway connect called");
+                //Cancel and purge timer so code doesn't continue in QR-Code scanner
+                mTimer.cancel();
+                mTimer.purge();
                 openQrCodeScanner();
 
             }
@@ -85,7 +88,7 @@ public class GatewayConnect extends Fragment {
                         if (position >= imageArray.length) {
                             position = 0;
                         }
-                        
+
                         if (countGatewayAnimations == 5)
                         {
                             //Cancel and purge timer so code doesn't continue in QR-Code scanner
