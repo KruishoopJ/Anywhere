@@ -50,18 +50,11 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
         mButton.setOnClickListener(this);
         setToolbarTitle(getString(R.string.title_home));
 
-
-        initNodeText();
         initRecyclerView(root);
         getData(getActivity());
 
 
         return root;
-    }
-
-    private void initNodeText(){
-        mNodeGroupNames.add("Hallo");
-        mNodeGroupNames.add("Hallo2");
     }
 
     private void getData(Context context){

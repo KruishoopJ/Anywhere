@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+        layout="@layout/toolbar" />
 
     <include
         android:id="@+id/progress"
@@ -19,5 +19,35 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="0dp" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/progress"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="404dp"
+        android:text="Light setting 1" />
+
+    <Switch
+        android:id="@+id/switch2"
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/progress"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="355dp"
+        android:text="Light setting 2" />
+
+    <Switch
+        android:id="@+id/switch3"
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/progress"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="299dp"
+        android:text="Light setting 3" />
 
 </RelativeLayout>

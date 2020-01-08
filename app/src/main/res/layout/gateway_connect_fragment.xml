@@ -22,6 +22,7 @@
         android:layout_centerHorizontal="true"
         android:gravity="center_vertical"
         android:layout_centerVertical="true"
-        android:src="@drawable/gateway" />
+        android:src="@drawable/gateway"
+        />
 </RelativeLayout>
 

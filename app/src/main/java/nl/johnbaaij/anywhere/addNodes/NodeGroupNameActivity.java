@@ -34,8 +34,6 @@ public class NodeGroupNameActivity extends AbstractToolbarActivity {
 
         final Button button = findViewById(R.id.buttonProgress);
 
-
-
         button.setText("Confirm");
 
         button.setOnClickListener(new View.OnClickListener() {
