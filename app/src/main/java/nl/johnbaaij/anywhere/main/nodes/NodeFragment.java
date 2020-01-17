@@ -69,6 +69,7 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
                 if (nodeGroups.size()!=0){
                     for (int i = 0; i < nodeGroups.size();  i++) {
                         mNodeGroupNames.add(nodeGroups.get(i).groupname);
+                        mNodeGroupAmount.add(nodeGroups.get(i).amount);
                     }
                 }
 

@@ -19,4 +19,6 @@
     <string name="title_activity_abstract">AbstractActivity</string>
     <string name="title_activity_node_group_name">NodeGroupNameActivity</string>
     <string name="title_activity_light_config">LightConfigActivity</string>
+    <string name="preference_file_key">nodeGroups</string>
+    <string name="scanned_qr_codes">scanned_qr_codes</string>
 </resources>

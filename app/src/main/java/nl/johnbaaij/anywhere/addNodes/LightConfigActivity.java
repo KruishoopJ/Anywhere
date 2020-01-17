@@ -8,14 +8,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import nl.johnbaaij.anywhere.MainToolbarActivity;
 import nl.johnbaaij.anywhere.R;
 import nl.johnbaaij.anywhere.abstractClasses.AbstractToolbarActivity;
-import nl.johnbaaij.anywhere.db.NodeGroup;
-import nl.johnbaaij.anywhere.db.NodeGroupDatabase;
+import nl.johnbaaij.anywhere.db.SaveToDatabase;
+import nl.johnbaaij.anywhere.models.NodeGroups;
+
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -23,12 +24,21 @@ public class LightConfigActivity extends AbstractToolbarActivity {
 
     public static Handler handler = new Handler();
 
+    SaveToDatabase saveToDatabase;
+    NodeGroups nodeGroups;
+    DatabaseReference mDatabase;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_light_config);
-
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        saveToDatabase = new SaveToDatabase();
+        Intent i = getIntent();
+        nodeGroups = (NodeGroups)i.getSerializableExtra("mNodeGroups");
 
         addToolbar();
         enableBackButton(true);
@@ -40,7 +50,11 @@ public class LightConfigActivity extends AbstractToolbarActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveToDB();
+
+                //TODO placeholder light config
+                nodeGroups.setLightConfig("PLACEHOLDER");
+                mDatabase.child("users").child("1").setValue(nodeGroups);
+                saveToDatabase.saveToDB(nodeGroups);
                 openMainActivity();
 
             }
@@ -49,6 +63,8 @@ public class LightConfigActivity extends AbstractToolbarActivity {
     }
 
     private void openMainActivity() {
+
+
         Log.d(TAG, "NodeGroupNameActivity called");
         Intent intent = new Intent(getApplicationContext(), MainToolbarActivity.class);
         Log.d(TAG, "created intent");
@@ -57,20 +73,11 @@ public class LightConfigActivity extends AbstractToolbarActivity {
     }
 
 
-    private void saveToDB() {
-        final NodeGroupDatabase appDb = NodeGroupDatabase.getInstance(getApplication());
-        final NodeGroup nodeGroup = new NodeGroup("Tomaten", 25, "led");
-        Executor myExecutor = Executors.newSingleThreadExecutor();
-        myExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                appDb.nodegroupDao().insertNodegroup(nodeGroup);
-            }
-        });
 
 
 
-    }
+
+
 
 
 

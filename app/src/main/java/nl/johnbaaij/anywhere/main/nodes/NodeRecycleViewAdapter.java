@@ -39,6 +39,7 @@ public class NodeRecycleViewAdapter extends RecyclerView.Adapter<NodeRecycleView
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.nodeGroupName.setText(mNodeGroupNames.get(position));
+        holder.nodeAmount.setText(mNodeGroupAmount.get(position).toString());
 
     }
 
@@ -50,12 +51,14 @@ public class NodeRecycleViewAdapter extends RecyclerView.Adapter<NodeRecycleView
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView nodeGroupName;
+        TextView nodeAmount;
         RelativeLayout parentLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            nodeGroupName = itemView.findViewById(R.id.nodeGroupName);
             parentLayout = itemView.findViewById(R.id.parent_layout);
+            nodeGroupName = itemView.findViewById(R.id.nodeGroupName);
+            nodeAmount = itemView.findViewById(R.id.nodeAmount);
         }
     }
 

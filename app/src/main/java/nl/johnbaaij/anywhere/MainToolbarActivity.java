@@ -1,5 +1,6 @@
 package nl.johnbaaij.anywhere;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -16,21 +17,20 @@ import nl.johnbaaij.anywhere.abstractClasses.AbstractToolbarActivity;
 
 public class MainToolbarActivity extends AbstractToolbarActivity {
 
+    public static Context contextOfApplication;
 
     private FirebaseAuth mAuth;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        contextOfApplication = getApplicationContext();
 
         mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_main);
 
         //add the toolbar from the super class
         addToolbar();
-
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -42,7 +42,10 @@ public class MainToolbarActivity extends AbstractToolbarActivity {
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
+    }
 
+    public static Context getContextOfApplication(){
+        return contextOfApplication;
     }
 
     @Override
@@ -51,10 +54,10 @@ public class MainToolbarActivity extends AbstractToolbarActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        // Firebase authentication enabled
-//        if (currentUser == null){
-//            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-//            finish();
-//        }
+        //Firebase authentication enabled
+        if (currentUser == null){
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            finish();
+        }
     }
 }
