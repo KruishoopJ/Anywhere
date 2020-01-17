@@ -12,6 +12,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -86,6 +87,10 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
         NodeRecycleViewAdapter adapter = new NodeRecycleViewAdapter(mNodeGroupNames,mNodeGroupAmount, getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        ItemTouchHelper itemTouchHelper = new
+                ItemTouchHelper(new NodeDelete(adapter));
+        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
     private void openAddNodeActivity(){

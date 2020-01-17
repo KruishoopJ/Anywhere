@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 
 import nl.johnbaaij.anywhere.R;
@@ -43,8 +45,6 @@ public class NodeRecycleViewAdapter extends RecyclerView.Adapter<NodeRecycleView
 
     }
 
-
-
     @Override
     public int getItemCount() {
         return mNodeGroupNames.size();
@@ -63,6 +63,15 @@ public class NodeRecycleViewAdapter extends RecyclerView.Adapter<NodeRecycleView
             nodeAmount = itemView.findViewById(R.id.nodeAmount);
         }
     }
+
+    public void deleteItem(int position) {
+        //mRecentlyDeletedItem = mListItems.get(position);
+        //mRecentlyDeletedItemPosition = position;
+        mNodeGroupNames.remove(position);
+        notifyItemRemoved(position);
+    }
+
+
 
 
 

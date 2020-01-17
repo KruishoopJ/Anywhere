@@ -14,6 +14,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -46,6 +47,7 @@ public class QRCodeScannerActivity extends AbstractToolbarActivity {
     NodeGroups nodeGroups;
     ArrayList<String> scannedCodes;
     Vibrator vibrator;
+    String lastScannedCode = "";
 
     JSONObject obj;
 
@@ -70,31 +72,7 @@ public class QRCodeScannerActivity extends AbstractToolbarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "Opened class");
 
-        //TODO fix this shit
-        obj = new JSONObject();
 
-        try {
-            obj.put("type","quantified");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            obj.put("id","1");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            obj.put("version","1");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            obj.put("date","2");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        json = obj.toString();
 
         super.onCreate(savedInstanceState);
         scannedCodes = new ArrayList<String>(); // Create an ArrayList object
@@ -176,20 +154,27 @@ public class QRCodeScannerActivity extends AbstractToolbarActivity {
                             vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                             String scannedText = qrCodes.valueAt(0).displayValue;
 
-                            Log.e(TAG, scannedText);
-                            boolean isQuantified = scannedText.indexOf(json) != -1 ? true : false;
+                            Log.d(TAG, scannedText);
+                            boolean isQuantified = scannedText.indexOf("quantified") != -1 ? true : false;
 
-                            // TODO: if scannedText already exists in database: Prompt: "Do you want to reinstall/move this node" or "this node is properly installed"
-                            if (isQuantified) {
-                                nodeConfirmed(scannedText);
-                                vibrator.vibrate(100);
+                            if (scannedText != lastScannedCode){
+                                // TODO: if scannedText already exists in database: Prompt: "Do you want to reinstall/move this node" or "this node is properly installed"
+                                if (isQuantified) {
+                                    nodeConfirmed(scannedText);
+                                    vibrator.vibrate(100);
 
-                            } else {
-                                textView.setText("This is not a Quantified product :)");
-                                vibrator.vibrate(100);
-                                cameraSource.stop();
+                                } else {
 
+                                    Toast.makeText(QRCodeScannerActivity.this, "\"This is not a Quantified product",
+                                            Toast.LENGTH_LONG).show();
+                                    vibrator.vibrate(100);
+                                    cameraSource.stop();
+
+                                }
+
+                                lastScannedCode = scannedText;
                             }
+
 
                             // Wait 200ms before opening camera
                             Handler handler = new Handler();
