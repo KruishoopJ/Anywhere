@@ -2,9 +2,11 @@ package nl.johnbaaij.anywhere;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,19 +34,35 @@ public class LoginActivity extends AbstractToolbarActivity implements GoogleApiC
     Button loginButton,registerButton,newPassButton;
     private static final int RC_SIGN_IN = 9001;
     private SignInButton signInButton;
-    FirebaseAuth firebaseAuth;
+    FirebaseAuth mAuth;
     GoogleApiClient mGoogleApiClient;
+    //private FirebaseAuth ;
+
+    private EditText emailTV, passwordTV;
+    private Button loginBtn;
+    private ProgressBar progressBar;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        loginEmail = (EditText) findViewById(R.id.loginEmail);
-        loginPassword = (EditText) findViewById(R.id.loginPassword);
-        loginButton = (Button) findViewById(R.id.loginButton);
+       // loginEmail = (EditText) findViewById(R.id.loginEmail);
+        //loginPassword = (EditText) findViewById(R.id.loginPassword);
+        //loginButton = (Button) findViewById(R.id.loginButton);
         signInButton = (SignInButton) findViewById(R.id.sign_in_button);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+
+
+        mAuth = FirebaseAuth.getInstance();
+        initializeUI();
+
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginUserAccount();
+            }
+        });
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -63,7 +81,7 @@ public class LoginActivity extends AbstractToolbarActivity implements GoogleApiC
             }
         });
 
-        if(firebaseAuth.getCurrentUser()!=null){
+        if(mAuth.getCurrentUser()!=null){
             startActivity(new Intent(getApplicationContext(), MainToolbarActivity.class));
         }
 
@@ -88,7 +106,7 @@ public class LoginActivity extends AbstractToolbarActivity implements GoogleApiC
 
     private void authWithGoogle(GoogleSignInAccount account) {
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
-        firebaseAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
@@ -106,4 +124,48 @@ public class LoginActivity extends AbstractToolbarActivity implements GoogleApiC
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+    private void loginUserAccount() {
+        progressBar.setVisibility(View.VISIBLE);
+
+        String email, password;
+        email = emailTV.getText().toString();
+        password = passwordTV.getText().toString();
+
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(getApplicationContext(), "Please enter email...", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(getApplicationContext(), "Please enter password!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
+
+                            Intent intent = new Intent(LoginActivity.this, MainToolbarActivity.class);
+                            startActivity(intent);
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), "Login failed! Please try again later", Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
+                        }
+                    }
+                });
+    }
+
+    private void initializeUI() {
+        emailTV = findViewById(R.id.email);
+        passwordTV = findViewById(R.id.password);
+
+        loginBtn = findViewById(R.id.login);
+        progressBar = findViewById(R.id.progressBar);
+    }
+
 }

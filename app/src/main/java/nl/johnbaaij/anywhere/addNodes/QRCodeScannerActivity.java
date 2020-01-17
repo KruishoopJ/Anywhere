@@ -1,8 +1,9 @@
 package nl.johnbaaij.anywhere.addNodes;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.hardware.Camera;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
@@ -13,6 +14,9 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -47,9 +51,6 @@ public class QRCodeScannerActivity extends AbstractToolbarActivity {
 
     String json;
 
-
-
-
     private void openNodeGroupNameActivity() {
         // TODO: build universal method with paramater -> class
         Log.d(TAG, "NodeGroupNameActivity called");
@@ -63,6 +64,7 @@ public class QRCodeScannerActivity extends AbstractToolbarActivity {
         startActivity(intent);
         Log.d(TAG, "Started intent");
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +99,7 @@ public class QRCodeScannerActivity extends AbstractToolbarActivity {
         super.onCreate(savedInstanceState);
         scannedCodes = new ArrayList<String>(); // Create an ArrayList object
         setContentView(R.layout.activity_qr_code_scanner);
+
 
         // Set values
         surfaceView = (SurfaceView) findViewById(R.id.qrCodeScanner);

@@ -43,6 +43,8 @@ public class NodeRecycleViewAdapter extends RecyclerView.Adapter<NodeRecycleView
 
     }
 
+
+
     @Override
     public int getItemCount() {
         return mNodeGroupNames.size();

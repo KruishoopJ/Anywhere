@@ -1,7 +1,12 @@
 package nl.johnbaaij.anywhere.addNodes;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 
@@ -26,4 +31,24 @@ public class GatewayActivity extends AbstractToolbarActivity {
 
 
     }
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+
+        if (ContextCompat.checkSelfPermission(GatewayActivity.this,
+                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+            if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)){
+
+            }
+            else{
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
+            }
+        }
+
+
+
+    }
+
 }
