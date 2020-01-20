@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -37,7 +37,6 @@ public class SettingsFragment extends AbstractFragment implements SettingsRecycl
     private ArrayList<String> mSettingLabels = new ArrayList<>();
 
 
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         settingsViewModel =
@@ -55,7 +54,7 @@ public class SettingsFragment extends AbstractFragment implements SettingsRecycl
         return root;
     }
 
-    private void initNodeText(){
+    private void initNodeText() {
         mSettingLabels.add(getResources().getString(R.string.profile));
         mSettingLabels.add(getResources().getString(R.string.support));
         mSettingLabels.add(getResources().getString(R.string.termscons));
@@ -64,11 +63,11 @@ public class SettingsFragment extends AbstractFragment implements SettingsRecycl
     }
 
 
-    private void initRecyclerView(View root){
+    private void initRecyclerView(View root) {
         RecyclerView recyclerView = root.findViewById(R.id.settingsRecyclerView);
         DividerItemDecoration itemDecor = new DividerItemDecoration(getActivity(), HORIZONTAL);
         recyclerView.addItemDecoration(itemDecor);
-        SettingsRecyclerViewAdaper adapter = new SettingsRecyclerViewAdaper(mSettingLabels, getActivity(),  this);
+        SettingsRecyclerViewAdaper adapter = new SettingsRecyclerViewAdaper(mSettingLabels, getActivity(), this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
@@ -82,11 +81,11 @@ public class SettingsFragment extends AbstractFragment implements SettingsRecycl
 
     }
 
-    protected void changeActivity(int itemNumber){
+    protected void changeActivity(int itemNumber) {
 
         Intent intent;
 
-        switch (itemNumber){
+        switch (itemNumber) {
             case 0:
                 intent = new Intent(getActivity(), ProfileActivity.class);
                 startActivity(intent);

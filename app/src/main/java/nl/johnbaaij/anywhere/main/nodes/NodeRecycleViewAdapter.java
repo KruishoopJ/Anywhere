@@ -10,8 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import java.util.ArrayList;
 
 import nl.johnbaaij.anywhere.R;
@@ -83,12 +81,9 @@ public class NodeRecycleViewAdapter extends RecyclerView.Adapter<NodeRecycleView
         notifyItemRemoved(position);
     }
 
-    public interface OnGroupListener{
+    public interface OnGroupListener {
         void onGroupClick(int position);
     }
-
-
-
 
 
 }

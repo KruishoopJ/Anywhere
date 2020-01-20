@@ -14,12 +14,11 @@ import nl.johnbaaij.anywhere.abstractClasses.AbstractToolbarActivity;
 public class ProfileActivity extends AbstractToolbarActivity {
 
 
-
     TextView nameTextView;
     TextView emailTextView;
     TextView phoneTextView;
     FirebaseAuth firebaseAuth;
-    private FirebaseAuth.AuthStateListener  authStateListener;
+    private FirebaseAuth.AuthStateListener authStateListener;
 
     String name, phoneNumber;
 
@@ -34,21 +33,17 @@ public class ProfileActivity extends AbstractToolbarActivity {
         enableBackButton(true);
 
 
-
-
-
-        nameTextView = (TextView) findViewById(R.id.nameTextView);
-        emailTextView = (TextView) findViewById(R.id.emailTextView);
-        phoneTextView = (TextView) findViewById(R.id.phoneTextView);
+        nameTextView = findViewById(R.id.nameTextView);
+        emailTextView = findViewById(R.id.emailTextView);
+        phoneTextView = findViewById(R.id.phoneTextView);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-         FirebaseUser user  = firebaseAuth.getCurrentUser();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
 
         checkUserInfo(user);
 
         name = "Test User";
-
 
 
         nameTextView.setText(name);
@@ -56,14 +51,13 @@ public class ProfileActivity extends AbstractToolbarActivity {
         phoneTextView.setText(phoneNumber);
 
 
-
     }
 
-    private void checkUserInfo(FirebaseUser user){
+    private void checkUserInfo(FirebaseUser user) {
         String i = user.getDisplayName();
         String j = user.getPhoneNumber();
 
-        if (i == "" | i == null){
+        if (i == "" | i == null) {
             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                     .setDisplayName("Test user")
                     .build();

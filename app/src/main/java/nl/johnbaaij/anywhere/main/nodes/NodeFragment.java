@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProviders;
@@ -23,9 +22,9 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import nl.johnbaaij.anywhere.addNodes.GatewayActivity;
 import nl.johnbaaij.anywhere.R;
 import nl.johnbaaij.anywhere.abstractClasses.AbstractFragment;
+import nl.johnbaaij.anywhere.addNodes.GatewayActivity;
 import nl.johnbaaij.anywhere.db.NodeGroup;
 import nl.johnbaaij.anywhere.db.NodeGroupDatabase;
 import nl.johnbaaij.anywhere.main.nodes.NodeGroups.SelectedNodeGroup;
@@ -61,7 +60,7 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
         return root;
     }
 
-    private void getData(Context context){
+    private void getData(Context context) {
         final NodeGroupDatabase appDb = NodeGroupDatabase.getInstance(context);
 
         Executor myExecutor = Executors.newSingleThreadExecutor();
@@ -70,8 +69,8 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
             public void run() {
                 final List<NodeGroup> nodeGroups = appDb.nodegroupDao().getNodeGroupList();
 
-                if (nodeGroups.size()!=0){
-                    for (int i = 0; i < nodeGroups.size();  i++) {
+                if (nodeGroups.size() != 0) {
+                    for (int i = 0; i < nodeGroups.size(); i++) {
                         mNodeGroupNames.add(nodeGroups.get(i).groupname);
                         mNodeGroupAmount.add(nodeGroups.get(i).amount);
                     }
@@ -83,11 +82,11 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
 
     }
 
-    private void initRecyclerView(View root){
+    private void initRecyclerView(View root) {
         RecyclerView recyclerView = root.findViewById(R.id.node_recyclerView);
         DividerItemDecoration itemDecor = new DividerItemDecoration(getActivity(), HORIZONTAL);
         recyclerView.addItemDecoration(itemDecor);
-        NodeRecycleViewAdapter adapter = new NodeRecycleViewAdapter(mNodeGroupNames,mNodeGroupAmount, getActivity(), this);
+        NodeRecycleViewAdapter adapter = new NodeRecycleViewAdapter(mNodeGroupNames, mNodeGroupAmount, getActivity(), this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -96,10 +95,10 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
         itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
-    private void openAddNodeActivity(){
+    private void openAddNodeActivity() {
 
-       Intent intent = new Intent(getActivity(), GatewayActivity.class);
-       startActivity(intent);
+        Intent intent = new Intent(getActivity(), GatewayActivity.class);
+        startActivity(intent);
 
     }
 

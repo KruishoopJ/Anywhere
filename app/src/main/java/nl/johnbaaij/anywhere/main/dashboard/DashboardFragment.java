@@ -8,16 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
-
+import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import nl.johnbaaij.anywhere.addNodes.QRCodeScannerActivity;
 import nl.johnbaaij.anywhere.R;
 import nl.johnbaaij.anywhere.abstractClasses.AbstractFragment;
-
+import nl.johnbaaij.anywhere.addNodes.QRCodeScannerActivity;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -47,14 +45,14 @@ public class DashboardFragment extends AbstractFragment implements View.OnClickL
 
     public void onClick(View v) {
         switch (v.getId()) {
-            case  R.id.buttonQrCode: {
+            case R.id.buttonQrCode: {
                 openQrCodeScanner();
                 break;
             }
         }
     }
 
-    private void openQrCodeScanner(){
+    private void openQrCodeScanner() {
         // TODO: build universal method with paramater -> class
         Log.d(TAG, "openQrScanner called");
         Intent intent = new Intent(getActivity(), QRCodeScannerActivity.class);

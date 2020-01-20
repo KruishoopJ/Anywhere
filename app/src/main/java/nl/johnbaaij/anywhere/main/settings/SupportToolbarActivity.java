@@ -25,7 +25,7 @@ public class SupportToolbarActivity extends AbstractToolbarActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Bedankt, we nemen zo snel mogelijk contact met je op",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Bedankt, we nemen zo snel mogelijk contact met je op", Toast.LENGTH_LONG).show();
             }
         });
     }

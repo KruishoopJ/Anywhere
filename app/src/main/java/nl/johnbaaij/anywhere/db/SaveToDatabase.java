@@ -12,7 +12,6 @@ import nl.johnbaaij.anywhere.models.NodeGroups;
 public class SaveToDatabase {
 
 
-
     public void saveToDB(NodeGroups groups) {
 
         Context applicationContext = MainToolbarActivity.getContextOfApplication();

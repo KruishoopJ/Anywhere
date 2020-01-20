@@ -26,7 +26,7 @@ public class TermsConToolbarActivity extends AbstractToolbarActivity {
         //add a backbutton to the application
         enableBackButton(true);
 
-        WebView webView = (WebView) findViewById(R.id.termsConsWebview);
+        WebView webView = findViewById(R.id.termsConsWebview);
 
 
         WebSettings webSettings = webView.getSettings();

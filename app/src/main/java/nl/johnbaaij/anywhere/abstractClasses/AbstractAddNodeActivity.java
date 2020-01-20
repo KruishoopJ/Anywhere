@@ -16,15 +16,15 @@ public class AbstractAddNodeActivity extends AbstractToolbarActivity {
     protected NodeGroups nodeGroups;
 
 
-    public void moveProgress(int screen){
+    public void moveProgress(int screen) {
 
-        progress1 = (ImageView) findViewById(R.id.progress_dot3);
-        progress2 = (ImageView) findViewById(R.id.progress_dot2);
-        progress3 = (ImageView) findViewById(R.id.progress_dot1);
-        progress4 = (ImageView) findViewById(R.id.progress_dot4);
-        progress5 = (ImageView) findViewById(R.id.progress_dot5);
+        progress1 = findViewById(R.id.progress_dot3);
+        progress2 = findViewById(R.id.progress_dot2);
+        progress3 = findViewById(R.id.progress_dot1);
+        progress4 = findViewById(R.id.progress_dot4);
+        progress5 = findViewById(R.id.progress_dot5);
 
-        switch (screen){
+        switch (screen) {
             case 1:
                 progress1.setBackgroundResource(R.drawable.drawable_circle_white);
                 break;

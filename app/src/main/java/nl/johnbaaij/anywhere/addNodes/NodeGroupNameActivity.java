@@ -29,7 +29,7 @@ public class NodeGroupNameActivity extends AbstractAddNodeActivity {
         enableBackButton(true);
 
         Intent i = getIntent();
-        nodeGroups = (NodeGroups)i.getSerializableExtra("mNodeGroups");
+        nodeGroups = (NodeGroups) i.getSerializableExtra("mNodeGroups");
 
         button = findViewById(R.id.buttonProgress);
         editText = findViewById(R.id.NodeGoupNameInput);
@@ -56,7 +56,7 @@ public class NodeGroupNameActivity extends AbstractAddNodeActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if(s.toString().trim().length()==0){
+                if (s.toString().trim().length() == 0) {
                     button.setEnabled(false);
                 } else {
                     button.setEnabled(true);
@@ -93,7 +93,6 @@ public class NodeGroupNameActivity extends AbstractAddNodeActivity {
         startActivity(intent);
         Log.d(TAG, "Started intent");
     }
-
 
 
 }

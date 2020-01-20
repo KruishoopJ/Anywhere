@@ -1,16 +1,7 @@
 package nl.johnbaaij.anywhere.addNodes.gateway;
 
-import androidx.lifecycle.ViewModelProviders;
-
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-
-import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,11 +9,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
-import nl.johnbaaij.anywhere.addNodes.QRCodeScannerActivity;
 import nl.johnbaaij.anywhere.R;
+import nl.johnbaaij.anywhere.addNodes.QRCodeScannerActivity;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 

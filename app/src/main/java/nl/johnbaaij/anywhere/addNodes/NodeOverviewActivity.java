@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import nl.johnbaaij.anywhere.R;
 import nl.johnbaaij.anywhere.abstractClasses.AbstractAddNodeActivity;
 import nl.johnbaaij.anywhere.addNodes.NodeOverview.NodeOverviewRecyclerViewAdapter;
-import nl.johnbaaij.anywhere.main.settings.SettingsRecyclerViewAdaper;
 import nl.johnbaaij.anywhere.models.NodeGroups;
 
 import static android.graphics.drawable.ClipDrawable.HORIZONTAL;
@@ -30,24 +28,19 @@ public class NodeOverviewActivity extends AbstractAddNodeActivity {
         enableBackButton(true);
         setToolbarTitle("Node Overview");
         Intent i = getIntent();
-        nodeGroups = (NodeGroups)i.getSerializableExtra("mNodeGroups");
+        nodeGroups = (NodeGroups) i.getSerializableExtra("mNodeGroups");
         initRecyclerView();
-
-
 
 
         button = findViewById(R.id.buttonProgress);
 
         // Init textview so the code can overwrite
-        textView = (TextView) findViewById(R.id.ProgressText);
+        textView = findViewById(R.id.ProgressText);
 
         // Set textview to scan node
         textView.setText("Scan node");
 
     }
-
-
-
 
 
     @Override
@@ -63,11 +56,11 @@ public class NodeOverviewActivity extends AbstractAddNodeActivity {
 
     }
 
-    private void initRecyclerView(){
+    private void initRecyclerView() {
         RecyclerView recyclerView = this.findViewById(R.id.node_overview);
         DividerItemDecoration itemDecor = new DividerItemDecoration(getApplicationContext(), HORIZONTAL);
         recyclerView.addItemDecoration(itemDecor);
-        NodeOverviewRecyclerViewAdapter adapter = new NodeOverviewRecyclerViewAdapter(nodeGroups.getScannedCodes(),getApplicationContext());
+        NodeOverviewRecyclerViewAdapter adapter = new NodeOverviewRecyclerViewAdapter(nodeGroups.getScannedCodes(), getApplicationContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

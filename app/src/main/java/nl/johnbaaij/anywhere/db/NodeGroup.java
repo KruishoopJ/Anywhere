@@ -4,19 +4,19 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity (tableName = "nodeGroup")
+@Entity(tableName = "nodeGroup")
 public class NodeGroup {
 
     @PrimaryKey(autoGenerate = true)
     public int id;
-    @ColumnInfo (name = "groupname")
+    @ColumnInfo(name = "groupname")
     public String groupname;
-    @ColumnInfo (name = "amount")
+    @ColumnInfo(name = "amount")
     public int amount;
-    @ColumnInfo (name = "lightConfig")
+    @ColumnInfo(name = "lightConfig")
     public String lightConfig;
 
-    public NodeGroup(String groupname, int amount, String lightConfig){
+    public NodeGroup(String groupname, int amount, String lightConfig) {
         this.groupname = groupname;
         this.amount = amount;
         this.lightConfig = lightConfig;

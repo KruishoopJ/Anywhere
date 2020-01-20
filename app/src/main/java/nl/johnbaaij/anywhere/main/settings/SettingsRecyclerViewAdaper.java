@@ -14,8 +14,6 @@ import java.util.ArrayList;
 
 import nl.johnbaaij.anywhere.R;
 
-import static androidx.constraintlayout.widget.Constraints.TAG;
-
 public class SettingsRecyclerViewAdaper extends RecyclerView.Adapter<SettingsRecyclerViewAdaper.ViewHolder> {
 
 
@@ -23,7 +21,7 @@ public class SettingsRecyclerViewAdaper extends RecyclerView.Adapter<SettingsRec
     private OnSettingListener mOnsettingListener;
     private Context mContext;
 
-    public SettingsRecyclerViewAdaper(ArrayList<String> nodeGroupNames, Context mContext, OnSettingListener onSettingListener ) {
+    public SettingsRecyclerViewAdaper(ArrayList<String> nodeGroupNames, Context mContext, OnSettingListener onSettingListener) {
         this.mNodeGroupNames = nodeGroupNames;
         this.mContext = mContext;
         this.mOnsettingListener = onSettingListener;
@@ -49,7 +47,7 @@ public class SettingsRecyclerViewAdaper extends RecyclerView.Adapter<SettingsRec
         return mNodeGroupNames.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView settingsLabel;
         RelativeLayout parentLayout;
@@ -58,7 +56,7 @@ public class SettingsRecyclerViewAdaper extends RecyclerView.Adapter<SettingsRec
 
         public ViewHolder(@NonNull View itemView, OnSettingListener onSettingListener) {
             super(itemView);
-             settingsLabel = itemView.findViewById(R.id.settingslabel);
+            settingsLabel = itemView.findViewById(R.id.settingslabel);
             parentLayout = itemView.findViewById(R.id.parent_layout);
             onSettingListener = mOnsettingListener;
 
@@ -76,7 +74,6 @@ public class SettingsRecyclerViewAdaper extends RecyclerView.Adapter<SettingsRec
     public interface OnSettingListener {
         void onSettingClick(int position);
     }
-
 
 
 }

@@ -10,13 +10,12 @@ import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
-
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -75,11 +74,11 @@ public class QRCodeScannerActivity extends AbstractAddNodeActivity {
         enableBackButton(true);
 
         // Set values
-        surfaceView = (SurfaceView) findViewById(R.id.qrCodeScanner);
+        surfaceView = findViewById(R.id.qrCodeScanner);
         button = findViewById(R.id.buttonProgress);
 
         // Init textview so the code can overwrite
-        textView = (TextView) findViewById(R.id.ProgressText);
+        textView = findViewById(R.id.ProgressText);
 
         // Set textview to scan node
         textView.setText("Scan node");
@@ -92,8 +91,6 @@ public class QRCodeScannerActivity extends AbstractAddNodeActivity {
                 .setRequestedPreviewSize(640, 480).setAutoFocusEnabled(true).build();
 
         button.setText("All nodes scanned");
-
-
 
 
         // Use surface view
@@ -144,9 +141,9 @@ public class QRCodeScannerActivity extends AbstractAddNodeActivity {
                             String scannedText = qrCodes.valueAt(0).displayValue;
 
                             Log.d(TAG, scannedText);
-                            boolean isQuantified = scannedText.indexOf("quantified") != -1 ? true : false;
+                            boolean isQuantified = scannedText.indexOf("quantified") != -1;
 
-                            if (scannedText != lastScannedCode){
+                            if (scannedText != lastScannedCode) {
                                 // TODO: if scannedText already exists in database: Prompt: "Do you want to reinstall/move this node" or "this node is properly installed"
                                 if (isQuantified) {
                                     nodeConfirmed(scannedText);
@@ -186,15 +183,14 @@ public class QRCodeScannerActivity extends AbstractAddNodeActivity {
         });
     }
 
-    private void nodeConfirmed(String scannedText){
+    private void nodeConfirmed(String scannedText) {
 
         //this function checks if the qr code is previously scanned
         // if it's not it's added to the arraylist scannedCodes
         int totalCount = Collections.frequency(scannedCodes, scannedText);
-        if (totalCount != 0){
+        if (totalCount != 0) {
 
-        }
-        else {
+        } else {
             scannedCodes.add(scannedText);
             cameraSource.stop();
         }

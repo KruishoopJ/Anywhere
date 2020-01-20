@@ -30,8 +30,8 @@ import nl.johnbaaij.anywhere.abstractClasses.AbstractToolbarActivity;
 
 
 public class LoginActivity extends AbstractToolbarActivity implements GoogleApiClient.OnConnectionFailedListener {
-    EditText loginEmail,loginPassword;
-    Button loginButton,registerButton,newPassButton;
+    EditText loginEmail, loginPassword;
+    Button loginButton, registerButton, newPassButton;
     private static final int RC_SIGN_IN = 9001;
     private SignInButton signInButton;
     FirebaseAuth mAuth;
@@ -47,11 +47,10 @@ public class LoginActivity extends AbstractToolbarActivity implements GoogleApiC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-       // loginEmail = (EditText) findViewById(R.id.loginEmail);
+        // loginEmail = (EditText) findViewById(R.id.loginEmail);
         //loginPassword = (EditText) findViewById(R.id.loginPassword);
         //loginButton = (Button) findViewById(R.id.loginButton);
-        signInButton = (SignInButton) findViewById(R.id.sign_in_button);
-
+        signInButton = findViewById(R.id.sign_in_button);
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -70,8 +69,8 @@ public class LoginActivity extends AbstractToolbarActivity implements GoogleApiC
                 .build();
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(LoginActivity.this,this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
+                .enableAutoManage(LoginActivity.this, this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
         signInButton.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +80,7 @@ public class LoginActivity extends AbstractToolbarActivity implements GoogleApiC
             }
         });
 
-        if(mAuth.getCurrentUser()!=null){
+        if (mAuth.getCurrentUser() != null) {
             startActivity(new Intent(getApplicationContext(), MainToolbarActivity.class));
         }
 
@@ -89,15 +88,15 @@ public class LoginActivity extends AbstractToolbarActivity implements GoogleApiC
 
     private void signIn() {
         Intent signIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signIntent,RC_SIGN_IN);
+        startActivityForResult(signIntent, RC_SIGN_IN);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==RC_SIGN_IN){
+        if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            if(result.isSuccess()){
+            if (result.isSuccess()) {
                 GoogleSignInAccount account = result.getSignInAccount();
                 authWithGoogle(account);
             }
@@ -105,16 +104,15 @@ public class LoginActivity extends AbstractToolbarActivity implements GoogleApiC
     }
 
     private void authWithGoogle(GoogleSignInAccount account) {
-        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
+        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     startActivity(new Intent(getApplicationContext(), MainToolbarActivity.class));
                     finish();
-                }
-                else{
-                    Toast.makeText(getApplicationContext(),"Auth Error",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Auth Error", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -151,8 +149,7 @@ public class LoginActivity extends AbstractToolbarActivity implements GoogleApiC
 
                             Intent intent = new Intent(LoginActivity.this, MainToolbarActivity.class);
                             startActivity(intent);
-                        }
-                        else {
+                        } else {
                             Toast.makeText(getApplicationContext(), "Login failed! Please try again later", Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);
                         }

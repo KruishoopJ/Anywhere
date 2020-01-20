@@ -2,7 +2,6 @@ package nl.johnbaaij.anywhere.addNodes;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -19,8 +18,8 @@ import nl.johnbaaij.anywhere.abstractClasses.AbstractAddNodeActivity;
 import nl.johnbaaij.anywhere.db.SaveToDatabase;
 import nl.johnbaaij.anywhere.models.NodeGroups;
 
-
 import static androidx.constraintlayout.widget.Constraints.TAG;
+
 
 public class LightConfigActivity extends AbstractAddNodeActivity {
 
@@ -30,7 +29,6 @@ public class LightConfigActivity extends AbstractAddNodeActivity {
     DatabaseReference mDatabase;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private FirebaseAuth mAuth;
-
 
 
     @Override
@@ -46,11 +44,11 @@ public class LightConfigActivity extends AbstractAddNodeActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         saveToDatabase = new SaveToDatabase();
         Intent i = getIntent();
-        nodeGroups = (NodeGroups)i.getSerializableExtra("mNodeGroups");
+        nodeGroups = (NodeGroups) i.getSerializableExtra("mNodeGroups");
 
         mAuth = FirebaseAuth.getInstance();
 
-        final FirebaseUser user  = mAuth.getCurrentUser();
+        final FirebaseUser user = mAuth.getCurrentUser();
 
         addToolbar();
         enableBackButton(true);
@@ -80,16 +78,6 @@ public class LightConfigActivity extends AbstractAddNodeActivity {
         startActivity(intent);
         Log.d(TAG, "Started intent");
     }
-
-
-
-
-
-
-
-
-
-
 
 
 }
