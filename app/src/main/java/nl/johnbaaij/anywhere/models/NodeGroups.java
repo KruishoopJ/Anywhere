@@ -11,12 +11,20 @@ public class NodeGroups implements Serializable {
     private String name;
     private String lightConfig;
     private ArrayList<String> scannedCodes;
+    private boolean hasWrenchError;
+    private boolean hasWarning;
+    private boolean hasBatteryError;
 
-    public NodeGroups(String name, String lightConfig, ArrayList<String> scannedCodes) {
+
+    public NodeGroups(String name, String lightConfig, ArrayList<String> scannedCodes, boolean hasWrenchError, boolean hasWarning, boolean hasBatteryError) {
         this.name = name;
         this.lightConfig = lightConfig;
         this.scannedCodes = scannedCodes;
+        this.hasWrenchError = hasWrenchError;
+        this.hasWarning = hasWarning;
+        this.hasBatteryError = hasBatteryError;
     }
+
 
     public String getName() {
         return name;
@@ -40,5 +48,29 @@ public class NodeGroups implements Serializable {
 
     public void setScannedCodes(ArrayList<String> scannedCodes) {
         this.scannedCodes = scannedCodes;
+    }
+
+    public boolean isHasWrenchError() {
+        return hasWrenchError;
+    }
+
+    public void setHasWrenchError(boolean hasWrenchError) {
+        this.hasWrenchError = hasWrenchError;
+    }
+
+    public boolean isHasWarning() {
+        return hasWarning;
+    }
+
+    public void setHasWarning(boolean hasWarning) {
+        this.hasWarning = hasWarning;
+    }
+
+    public boolean isHasBatteryError() {
+        return hasBatteryError;
+    }
+
+    public void setHasBatteryError(boolean hadBatteryError) {
+        this.hasBatteryError = hadBatteryError;
     }
 }

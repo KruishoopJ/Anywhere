@@ -13,6 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".addNodes.NodeOverviewActivity"></activity>
+        <activity android:name=".main.nodes.NodeGroups.SelectedNodeGroup" />
         <activity
             android:name=".addNodes.LightConfigActivity"
             android:label="@string/title_activity_light_config"

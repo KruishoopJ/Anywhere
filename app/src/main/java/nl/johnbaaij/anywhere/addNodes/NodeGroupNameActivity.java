@@ -10,21 +10,16 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import nl.johnbaaij.anywhere.R;
-import nl.johnbaaij.anywhere.abstractClasses.AbstractToolbarActivity;
+import nl.johnbaaij.anywhere.abstractClasses.AbstractAddNodeActivity;
 import nl.johnbaaij.anywhere.models.NodeGroups;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-public class NodeGroupNameActivity extends AbstractToolbarActivity {
+public class NodeGroupNameActivity extends AbstractAddNodeActivity {
 
-    NodeGroups nodeGroups;
     String name;
     Button button;
     EditText editText;
-
-
-
-    //TODO replace with real name that needs to be passed to the activity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +41,7 @@ public class NodeGroupNameActivity extends AbstractToolbarActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        moveProgress(4);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

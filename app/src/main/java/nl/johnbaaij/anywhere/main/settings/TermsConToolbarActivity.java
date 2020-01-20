@@ -14,6 +14,8 @@ public class TermsConToolbarActivity extends AbstractToolbarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terms_con);
 
+        //todo this link must be added to the terms and conditions / rights https://github.com/Templarian/MaterialDesign/blob/master/LICENSE
+
 
         //add toolbar from super class
         addToolbar();

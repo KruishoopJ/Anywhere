@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -26,18 +28,19 @@ import nl.johnbaaij.anywhere.R;
 import nl.johnbaaij.anywhere.abstractClasses.AbstractFragment;
 import nl.johnbaaij.anywhere.db.NodeGroup;
 import nl.johnbaaij.anywhere.db.NodeGroupDatabase;
+import nl.johnbaaij.anywhere.main.nodes.NodeGroups.SelectedNodeGroup;
 
 import static android.graphics.drawable.ClipDrawable.HORIZONTAL;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-public class NodeFragment extends AbstractFragment implements View.OnClickListener {
+public class NodeFragment extends AbstractFragment implements View.OnClickListener, NodeRecycleViewAdapter.OnGroupListener {
 
     private NodeViewModel nodeViewModel;
 
     private ArrayList<String> mNodeGroupNames = new ArrayList<>();
     private ArrayList<Integer> mNodeGroupAmount = new ArrayList<>();
 
-    private Button mButton;
+    private FloatingActionButton mButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -84,7 +87,7 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
         RecyclerView recyclerView = root.findViewById(R.id.node_recyclerView);
         DividerItemDecoration itemDecor = new DividerItemDecoration(getActivity(), HORIZONTAL);
         recyclerView.addItemDecoration(itemDecor);
-        NodeRecycleViewAdapter adapter = new NodeRecycleViewAdapter(mNodeGroupNames,mNodeGroupAmount, getActivity());
+        NodeRecycleViewAdapter adapter = new NodeRecycleViewAdapter(mNodeGroupNames,mNodeGroupAmount, getActivity(), this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -114,9 +117,12 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
     }
 
 
+    @Override
+    public void onGroupClick(int position) {
 
+        //TODO CREATE NEW ACTIVITY
+        Intent intent = new Intent(getActivity(), SelectedNodeGroup.class);
+        startActivity(intent);
 
-
-
-
+    }
 }

@@ -20,34 +20,27 @@
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="0dp" />
 
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="224dp"
+    <RadioGroup
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/progress"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="130dp"
-        android:layout_marginBottom="404dp"
-        android:text="Light setting 1" />
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="54dp"
+        android:layout_marginBottom="350dp"
+        android:checkedButton="@+id/first"
+        android:orientation="vertical">
 
-    <Switch
-        android:id="@+id/switch2"
-        android:layout_width="224dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/progress"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="130dp"
-        android:layout_marginBottom="355dp"
-        android:text="Light setting 2" />
+        <RadioButton
+            android:id="@+id/first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hallo" />
 
-    <Switch
-        android:id="@+id/switch3"
-        android:layout_width="224dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/progress"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="130dp"
-        android:layout_marginBottom="299dp"
-        android:text="Light setting 3" />
+        <RadioButton
+            android:id="@+id/second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hallo" />
+    </RadioGroup>
 
 </RelativeLayout>

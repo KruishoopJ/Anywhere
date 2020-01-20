@@ -32,9 +32,5 @@ public abstract class AbstractToolbarActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(isEnabled);
     }
 
-    protected void createSharedPreferences(){
-        sharedPreferences = this.getSharedPreferences(
-                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-    }
 
 }

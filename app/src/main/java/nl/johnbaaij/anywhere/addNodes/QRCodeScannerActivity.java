@@ -1,9 +1,7 @@
 package nl.johnbaaij.anywhere.addNodes;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
@@ -12,59 +10,56 @@ import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import nl.johnbaaij.anywhere.R;
-import nl.johnbaaij.anywhere.abstractClasses.AbstractToolbarActivity;
+import nl.johnbaaij.anywhere.abstractClasses.AbstractAddNodeActivity;
 import nl.johnbaaij.anywhere.models.NodeGroups;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-public class QRCodeScannerActivity extends AbstractToolbarActivity {
+public class QRCodeScannerActivity extends AbstractAddNodeActivity {
 
     SurfaceView surfaceView;
     CameraSource cameraSource;
-    TextView textView;
     BarcodeDetector barcodeDetector;
-    Button button;
-    NodeGroups nodeGroups;
     ArrayList<String> scannedCodes;
     Vibrator vibrator;
     String lastScannedCode = "";
 
-    JSONObject obj;
-
-    String json;
-
-    private void openNodeGroupNameActivity() {
+    private void openNodeOverviewActivity() {
         // TODO: build universal method with paramater -> class
         Log.d(TAG, "NodeGroupNameActivity called");
-        Intent intent = new Intent(getApplicationContext(), NodeGroupNameActivity.class);
+        Intent intent = new Intent(getApplicationContext(), NodeOverviewActivity.class);
         Log.d(TAG, "created intent");
-        nodeGroups = new NodeGroups(null, null, scannedCodes);
+        nodeGroups = new NodeGroups(null, null, scannedCodes, false, false, false);
 
-        //TODO pass real data from QR to NodeGroupNameActivity
         intent.putExtra("mNodeGroups", nodeGroups);
-
         startActivity(intent);
         Log.d(TAG, "Started intent");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        moveProgress(2);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNodeOverviewActivity();
+            }
+        });
+
     }
 
 
@@ -72,12 +67,12 @@ public class QRCodeScannerActivity extends AbstractToolbarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "Opened class");
 
-
-
         super.onCreate(savedInstanceState);
         scannedCodes = new ArrayList<String>(); // Create an ArrayList object
         setContentView(R.layout.activity_qr_code_scanner);
+        addToolbar();
 
+        enableBackButton(true);
 
         // Set values
         surfaceView = (SurfaceView) findViewById(R.id.qrCodeScanner);
@@ -98,12 +93,6 @@ public class QRCodeScannerActivity extends AbstractToolbarActivity {
 
         button.setText("All nodes scanned");
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openNodeGroupNameActivity();
-            }
-        });
 
 
 

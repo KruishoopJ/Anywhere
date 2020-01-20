@@ -54,6 +54,7 @@ public class GatewayConnect extends Fragment {
         final Button button = root.findViewById(R.id.buttonProgress);
         button.setText("Connection found");
 
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

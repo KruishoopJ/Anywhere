@@ -12,13 +12,13 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="140dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="26dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_circle_icons_profile"
+        tools:srcCompat="@drawable/ic_circle_icons_profile" />
 
     <TextView
         android:id="@+id/nameTextView"
@@ -33,22 +33,21 @@
 
     <TextView
         android:id="@+id/emailTextView"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView2"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="42dp"
+        android:layout_centerInParent="true"
         android:layout_marginTop="116dp"
         android:text="E-mail: "
         android:textSize="14sp" />
 
     <TextView
         android:id="@+id/phoneTextView"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView2"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="44dp"
+        android:layout_centerInParent="true"
+
         android:layout_marginTop="165dp"
         android:text="Phone:"
         android:textSize="14sp" />

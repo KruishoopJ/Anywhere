@@ -28,9 +28,9 @@ import nl.johnbaaij.anywhere.abstractClasses.AbstractFragment;
 import static android.graphics.drawable.ClipDrawable.HORIZONTAL;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-public class NotificationsFragment extends AbstractFragment implements SettingsRecyclerViewAdaper.OnSettingListener {
+public class SettingsFragment extends AbstractFragment implements SettingsRecyclerViewAdaper.OnSettingListener {
 
-    private NotificationsViewModel notificationsViewModel;
+    private SettingsViewModel settingsViewModel;
     private FirebaseAuth mAuth;
 
 
@@ -40,10 +40,10 @@ public class NotificationsFragment extends AbstractFragment implements SettingsR
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel =
-                ViewModelProviders.of(this).get(NotificationsViewModel.class);
+        settingsViewModel =
+                ViewModelProviders.of(this).get(SettingsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_settings, container, false);
-        notificationsViewModel.getText().observe(this, new Observer<String>() {
+        settingsViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
             }

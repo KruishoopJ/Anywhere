@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import nl.johnbaaij.anywhere.R;
 import nl.johnbaaij.anywhere.abstractClasses.AbstractToolbarActivity;
@@ -19,6 +20,8 @@ public class ProfileActivity extends AbstractToolbarActivity {
     TextView phoneTextView;
     FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener  authStateListener;
+
+    String name, phoneNumber;
 
 
     @Override
@@ -40,20 +43,32 @@ public class ProfileActivity extends AbstractToolbarActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        final FirebaseUser user  = firebaseAuth.getCurrentUser();
+         FirebaseUser user  = firebaseAuth.getCurrentUser();
 
-        nameTextView.setText(user.getDisplayName());
+        checkUserInfo(user);
+
+        name = "Test User";
+
+
+
+        nameTextView.setText(name);
         emailTextView.setText("E-mail : " + user.getEmail());
-        phoneTextView.setText(user.getPhoneNumber());
+        phoneTextView.setText(phoneNumber);
 
 
 
     }
 
-    @Override
-    public void setToolbarTitle(String title) {
+    private void checkUserInfo(FirebaseUser user){
+        String i = user.getDisplayName();
+        String j = user.getPhoneNumber();
 
-
-
+        if (i == "" | i == null){
+            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                    .setDisplayName("Test user")
+                    .build();
+        }
     }
+
+
 }

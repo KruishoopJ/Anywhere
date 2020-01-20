@@ -22,11 +22,13 @@ public class NodeRecycleViewAdapter extends RecyclerView.Adapter<NodeRecycleView
     private ArrayList<String> mNodeGroupNames = new ArrayList<>();
     private ArrayList<Integer> mNodeGroupAmount = new ArrayList<>();
     private Context mContext;
+    private OnGroupListener mOngroupListener;
 
-    public NodeRecycleViewAdapter(ArrayList<String> mNodeGroupNames, ArrayList<Integer> mNodeGroupAmount, Context mContext) {
+    public NodeRecycleViewAdapter(ArrayList<String> mNodeGroupNames, ArrayList<Integer> mNodeGroupAmount, Context mContext, OnGroupListener onGroupListener) {
         this.mNodeGroupNames = mNodeGroupNames;
         this.mNodeGroupAmount = mNodeGroupAmount;
         this.mContext = mContext;
+        this.mOngroupListener = onGroupListener;
     }
 
     @NonNull
@@ -34,7 +36,7 @@ public class NodeRecycleViewAdapter extends RecyclerView.Adapter<NodeRecycleView
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_node_item, parent, false);
-        ViewHolder holder = new ViewHolder(view);
+        ViewHolder holder = new ViewHolder(view, mOngroupListener);
         return holder;
     }
 
@@ -50,17 +52,27 @@ public class NodeRecycleViewAdapter extends RecyclerView.Adapter<NodeRecycleView
         return mNodeGroupNames.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView nodeGroupName;
         TextView nodeAmount;
         RelativeLayout parentLayout;
+        OnGroupListener onGroupListener;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, OnGroupListener onGroupListener) {
             super(itemView);
             parentLayout = itemView.findViewById(R.id.parent_layout);
             nodeGroupName = itemView.findViewById(R.id.nodeGroupName);
             nodeAmount = itemView.findViewById(R.id.nodeAmount);
+            this.onGroupListener = onGroupListener;
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            onGroupListener.onGroupClick(getAdapterPosition());
+
         }
     }
 
@@ -69,6 +81,10 @@ public class NodeRecycleViewAdapter extends RecyclerView.Adapter<NodeRecycleView
         //mRecentlyDeletedItemPosition = position;
         mNodeGroupNames.remove(position);
         notifyItemRemoved(position);
+    }
+
+    public interface OnGroupListener{
+        void onGroupClick(int position);
     }
 
 

@@ -3,18 +3,17 @@ package nl.johnbaaij.anywhere.addNodes;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import java.util.ArrayList;
-
 import nl.johnbaaij.anywhere.R;
+import nl.johnbaaij.anywhere.abstractClasses.AbstractAddNodeActivity;
 import nl.johnbaaij.anywhere.abstractClasses.AbstractToolbarActivity;
 
 
-public class GatewayActivity extends AbstractToolbarActivity {
+public class GatewayActivity extends AbstractAddNodeActivity {
 
     private ArrayList<String> mSettingLabels = new ArrayList<>();
     TextView textView;
@@ -26,8 +25,13 @@ public class GatewayActivity extends AbstractToolbarActivity {
 
         setContentView(R.layout.activity_add_nodes);
 
+        addToolbar();
+        enableBackButton(true);
+
         textView = (TextView) findViewById(R.id.ProgressText);
         textView.setText("Gateway connecting");
+
+
 
 
     }
@@ -46,6 +50,8 @@ public class GatewayActivity extends AbstractToolbarActivity {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
             }
         }
+
+        moveProgress(1);
 
 
 
