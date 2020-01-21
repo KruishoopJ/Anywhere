@@ -17,7 +17,7 @@ public class SupportToolbarActivity extends AbstractToolbarActivity {
         setContentView(R.layout.activity_support);
 
         addToolbar();
-        setToolbarTitle("support");
+        setToolbarTitle("Support");
         enableBackButton(true);
 
 

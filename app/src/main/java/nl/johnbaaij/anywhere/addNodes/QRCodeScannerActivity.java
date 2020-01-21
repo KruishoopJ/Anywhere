@@ -61,7 +61,6 @@ public class QRCodeScannerActivity extends AbstractAddNodeActivity {
 
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "Opened class");
@@ -70,6 +69,7 @@ public class QRCodeScannerActivity extends AbstractAddNodeActivity {
         scannedCodes = new ArrayList<String>(); // Create an ArrayList object
         setContentView(R.layout.activity_qr_code_scanner);
         addToolbar();
+        setToolbarTitle("Scan your nodes");
 
         enableBackButton(true);
 

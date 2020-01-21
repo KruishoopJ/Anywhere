@@ -27,6 +27,7 @@ public class NodeGroupNameActivity extends AbstractAddNodeActivity {
         setContentView(R.layout.activity_node_group_name);
         addToolbar();
         enableBackButton(true);
+        setToolbarTitle("Name your group");
 
         Intent i = getIntent();
         nodeGroups = (NodeGroups) i.getSerializableExtra("mNodeGroups");

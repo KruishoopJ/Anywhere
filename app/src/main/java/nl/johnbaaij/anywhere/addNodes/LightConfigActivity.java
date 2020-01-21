@@ -52,6 +52,7 @@ public class LightConfigActivity extends AbstractAddNodeActivity {
 
         addToolbar();
         enableBackButton(true);
+        setToolbarTitle("Configure your lights");
 
         final Button button = findViewById(R.id.buttonProgress);
 

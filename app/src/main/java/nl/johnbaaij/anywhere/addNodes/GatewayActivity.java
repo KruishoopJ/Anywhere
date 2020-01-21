@@ -28,6 +28,7 @@ public class GatewayActivity extends AbstractAddNodeActivity {
 
         addToolbar();
         enableBackButton(true);
+        setToolbarTitle("Gateway check");
 
         textView = findViewById(R.id.ProgressText);
         textView.setText("Gateway connecting");

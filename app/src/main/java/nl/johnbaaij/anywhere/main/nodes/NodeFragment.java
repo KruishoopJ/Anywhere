@@ -121,6 +121,9 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
 
         //TODO CREATE NEW ACTIVITY
         Intent intent = new Intent(getActivity(), SelectedNodeGroup.class);
+
+        intent.putExtra("nodeName", mNodeGroupNames.get(position));
+        startActivity(intent);
         startActivity(intent);
 
     }
