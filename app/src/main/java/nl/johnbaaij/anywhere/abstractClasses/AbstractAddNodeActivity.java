@@ -1,9 +1,12 @@
 package nl.johnbaaij.anywhere.abstractClasses;
 
+import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import nl.johnbaaij.anywhere.FaqActivity;
 import nl.johnbaaij.anywhere.R;
 import nl.johnbaaij.anywhere.models.NodeGroups;
 
@@ -14,6 +17,30 @@ public class AbstractAddNodeActivity extends AbstractToolbarActivity {
     protected TextView textView;
     protected ImageView progress1, progress2, progress3, progress4, progress5;
     protected NodeGroups nodeGroups;
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.top_bar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.navigation_faq:
+                openFAQ();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void openFAQ() {
+        Intent intent = new Intent(AbstractAddNodeActivity.this, FaqActivity.class);
+        startActivity(intent);
+
+    }
 
 
     public void moveProgress(int screen) {

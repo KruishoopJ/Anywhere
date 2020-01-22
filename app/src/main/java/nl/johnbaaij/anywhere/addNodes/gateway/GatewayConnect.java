@@ -3,11 +3,13 @@ package nl.johnbaaij.anywhere.addNodes.gateway;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +33,7 @@ public class GatewayConnect extends Fragment {
     ImageView MyImageView;
     Timer mTimer = new Timer();
     int[] imageArray = { R.drawable.gateway, R.drawable.gateway_zend };
+    Button button;
 
     private GatewayConnectViewModel mViewModel;
 
@@ -47,21 +50,10 @@ public class GatewayConnect extends Fragment {
 
         View root = inflater.inflate(R.layout.gateway_connect_fragment, container, false);
 
-        final Button button = root.findViewById(R.id.buttonProgress);
+        button = root.findViewById(R.id.buttonProgress);
+        button.setEnabled(false);
         button.setText("Connection found");
 
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "Gateway connect called");
-                //Cancel and purge timer so code doesn't continue in QR-Code scanner
-                mTimer.cancel();
-                mTimer.purge();
-                openQrCodeScanner();
-
-            }
-        });
 
         // TODO: add delay to mock internet connection setup
 
@@ -91,7 +83,10 @@ public class GatewayConnect extends Fragment {
                             //Cancel and purge timer so code doesn't continue in QR-Code scanner
                             mTimer.cancel();
                             mTimer.purge();
-                            openQrCodeScanner();
+                            button.setEnabled(true);
+                            Toast toast = Toast.makeText(getContext(),"Connection found", Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.CENTER, 0, -180);
+                            toast.show();
                         }
                         //Set text and image
                         MyImageView.setImageResource(imageArray[position]);
@@ -102,6 +97,22 @@ public class GatewayConnect extends Fragment {
 
 
         return root;
+    }
+
+    public void onStart() {
+        super.onStart();
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "Gateway connect called");
+                //Cancel and purge timer so code doesn't continue in QR-Code scanner
+                mTimer.cancel();
+                mTimer.purge();
+                openQrCodeScanner();
+            }
+        });
+
     }
 
     @Override

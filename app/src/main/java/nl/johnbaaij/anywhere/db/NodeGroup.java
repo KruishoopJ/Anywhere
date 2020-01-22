@@ -15,10 +15,23 @@ public class NodeGroup {
     public int amount;
     @ColumnInfo(name = "lightConfig")
     public String lightConfig;
+    @ColumnInfo(name = "uid")
+    public String uid;
+    @ColumnInfo(name="batteryWarning")
+    public boolean batteryWaring;
+    @ColumnInfo (name="generalWarning")
+    public boolean generalWarning;
+    @ColumnInfo (name="wrenchError")
+    public boolean wrenchError;
 
-    public NodeGroup(String groupname, int amount, String lightConfig) {
+
+    public NodeGroup(String groupname, int amount, String lightConfig, String uid, boolean batteryWaring, boolean generalWarning, boolean wrenchError) {
         this.groupname = groupname;
         this.amount = amount;
         this.lightConfig = lightConfig;
+        this.uid = uid;
+        this.batteryWaring = batteryWaring;
+        this.generalWarning = generalWarning;
+        this.wrenchError = wrenchError;
     }
 }

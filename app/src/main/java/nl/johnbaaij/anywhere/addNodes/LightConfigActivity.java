@@ -29,12 +29,24 @@ public class LightConfigActivity extends AbstractAddNodeActivity {
     DatabaseReference mDatabase;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private FirebaseAuth mAuth;
+    FirebaseUser user;
+    Button button;
 
 
     @Override
     protected void onStart() {
         super.onStart();
         moveProgress(5);
+
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                handleData(false, false, false);
+            }
+        });
     }
 
     @Override
@@ -47,28 +59,13 @@ public class LightConfigActivity extends AbstractAddNodeActivity {
         nodeGroups = (NodeGroups) i.getSerializableExtra("mNodeGroups");
 
         mAuth = FirebaseAuth.getInstance();
-
-        final FirebaseUser user = mAuth.getCurrentUser();
-
+        user = mAuth.getCurrentUser();
         addToolbar();
         enableBackButton(true);
         setToolbarTitle("Configure your lights");
-
-        final Button button = findViewById(R.id.buttonProgress);
-
+        button = findViewById(R.id.buttonProgress);
         button.setText("Confirm");
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String key = database.getReference("nodeGroups").push().getKey();
-                //TODO placeholder light config
-                nodeGroups.setLightConfig("PLACEHOLDER");
-                mDatabase.child("nodegroups").child(user.getUid()).child(key).setValue(nodeGroups);
-                saveToDatabase.saveToDB(nodeGroups);
-                openMainActivity();
-            }
-        });
     }
 
     private void openMainActivity() {
@@ -78,6 +75,20 @@ public class LightConfigActivity extends AbstractAddNodeActivity {
         finish();
         startActivity(intent);
         Log.d(TAG, "Started intent");
+    }
+
+    private void handleData(boolean batteryError, boolean warning, boolean wrenchError){
+        String key = database.getReference("nodeGroups").push().getKey();
+        //TODO placeholder light config
+        nodeGroups.setLightConfig("PLACEHOLDER");
+        nodeGroups.setHasBatteryError(batteryError);
+        nodeGroups.setHasWarning(warning);
+        nodeGroups.setHasWrenchError(wrenchError);
+        mDatabase.child("nodegroups").child(user.getUid()).child(key).setValue(nodeGroups);
+        saveToDatabase.saveToDB(nodeGroups, key);
+        saveToDatabase.countDB(nodeGroups,key);
+        openMainActivity();
+
     }
 
 

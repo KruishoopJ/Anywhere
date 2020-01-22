@@ -15,6 +15,8 @@ public interface NodegroupDao {
     @Query("Select * From nodeGroup")
     List<NodeGroup> getNodeGroupList();
 
+    @Query("SELECT COUNT(id) FROM nodegroup")
+    int getCount();
 
     @Insert
     void insertNodegroup(NodeGroup nodeGroup);

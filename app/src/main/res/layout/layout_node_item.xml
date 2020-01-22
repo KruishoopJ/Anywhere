@@ -37,7 +37,7 @@
         app:srcCompat="@drawable/ic_node" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/nodeError"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_alignParentTop="true"

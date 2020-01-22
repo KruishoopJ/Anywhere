@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -19,14 +20,16 @@ public class NodeRecycleViewAdapter extends RecyclerView.Adapter<NodeRecycleView
 
     private ArrayList<String> mNodeGroupNames = new ArrayList<>();
     private ArrayList<Integer> mNodeGroupAmount = new ArrayList<>();
+    private ArrayList<Boolean> mBatteryErrors = new ArrayList<>();
     private Context mContext;
     private OnGroupListener mOngroupListener;
 
-    public NodeRecycleViewAdapter(ArrayList<String> mNodeGroupNames, ArrayList<Integer> mNodeGroupAmount, Context mContext, OnGroupListener onGroupListener) {
+    public NodeRecycleViewAdapter(ArrayList<String> mNodeGroupNames, ArrayList<Integer> mNodeGroupAmount, ArrayList<Boolean> mBatteryErrors, Context mContext, OnGroupListener onGroupListener) {
         this.mNodeGroupNames = mNodeGroupNames;
         this.mNodeGroupAmount = mNodeGroupAmount;
         this.mContext = mContext;
         this.mOngroupListener = onGroupListener;
+        this.mBatteryErrors = mBatteryErrors;
     }
 
     @NonNull
@@ -43,6 +46,10 @@ public class NodeRecycleViewAdapter extends RecyclerView.Adapter<NodeRecycleView
         holder.nodeGroupName.setText(mNodeGroupNames.get(position));
         holder.nodeAmount.setText(mNodeGroupAmount.get(position).toString());
 
+        if (mBatteryErrors.get(position)){
+            holder.errorView.setBackground(holder.itemView.getResources().getDrawable(R.drawable.ic_battery_alert_black_24dp));
+        }
+
     }
 
     @Override
@@ -52,16 +59,17 @@ public class NodeRecycleViewAdapter extends RecyclerView.Adapter<NodeRecycleView
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView nodeGroupName;
-        TextView nodeAmount;
+        TextView nodeGroupName, nodeAmount;
         RelativeLayout parentLayout;
         OnGroupListener onGroupListener;
+        ImageView errorView;
 
         public ViewHolder(@NonNull View itemView, OnGroupListener onGroupListener) {
             super(itemView);
             parentLayout = itemView.findViewById(R.id.parent_layout);
             nodeGroupName = itemView.findViewById(R.id.nodeGroupName);
             nodeAmount = itemView.findViewById(R.id.nodeAmount);
+            errorView = itemView.findViewById(R.id.nodeError);
             this.onGroupListener = onGroupListener;
 
             itemView.setOnClickListener(this);

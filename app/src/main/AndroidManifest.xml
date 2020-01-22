@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".addNodes.NodeOverviewActivity"></activity>
+        <activity android:name=".FaqActivity"></activity>
+        <activity android:name=".addNodes.NodeOverviewActivity" />
         <activity android:name=".main.nodes.NodeGroups.SelectedNodeGroup" />
         <activity
             android:name=".addNodes.LightConfigActivity"

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 
 @SuppressWarnings("serial") //With this annotation we are going to hide compiler warnings
+//This is required for the database
 public class NodeGroups implements Serializable {
 
     private String name;
@@ -14,6 +15,10 @@ public class NodeGroups implements Serializable {
     private boolean hasWrenchError;
     private boolean hasWarning;
     private boolean hasBatteryError;
+
+    public NodeGroups(){
+
+    }
 
 
     public NodeGroups(String name, String lightConfig, ArrayList<String> scannedCodes, boolean hasWrenchError, boolean hasWarning, boolean hasBatteryError) {

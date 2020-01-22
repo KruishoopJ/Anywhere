@@ -36,14 +36,18 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
 
     private NodeViewModel nodeViewModel;
 
+    //TODO change this with a NodeGroupsModel
     private ArrayList<String> mNodeGroupNames = new ArrayList<>();
     private ArrayList<Integer> mNodeGroupAmount = new ArrayList<>();
+    private ArrayList<String> mNodeGroupIds = new ArrayList<>();
+    private ArrayList<Boolean> mWarnings = new ArrayList<>();
+    private ArrayList<Boolean> mBatteryErrors = new ArrayList<>();
+    private ArrayList<Boolean> mWrenchErrors = new ArrayList<>();
 
     private FloatingActionButton mButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
 
         nodeViewModel =
                 ViewModelProviders.of(this).get(NodeViewModel.class);
@@ -56,7 +60,6 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
         initRecyclerView(root);
         getData(getActivity());
 
-
         return root;
     }
 
@@ -68,15 +71,16 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
             @Override
             public void run() {
                 final List<NodeGroup> nodeGroups = appDb.nodegroupDao().getNodeGroupList();
-
                 if (nodeGroups.size() != 0) {
                     for (int i = 0; i < nodeGroups.size(); i++) {
                         mNodeGroupNames.add(nodeGroups.get(i).groupname);
                         mNodeGroupAmount.add(nodeGroups.get(i).amount);
+                        mNodeGroupIds.add(nodeGroups.get(i).uid);
+                        mWarnings.add(nodeGroups.get(i).generalWarning);
+                        mBatteryErrors.add(nodeGroups.get(i).batteryWaring);
+                        mWrenchErrors.add(nodeGroups.get(i).wrenchError);
                     }
                 }
-
-
             }
         });
 
@@ -86,7 +90,7 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
         RecyclerView recyclerView = root.findViewById(R.id.node_recyclerView);
         DividerItemDecoration itemDecor = new DividerItemDecoration(getActivity(), HORIZONTAL);
         recyclerView.addItemDecoration(itemDecor);
-        NodeRecycleViewAdapter adapter = new NodeRecycleViewAdapter(mNodeGroupNames, mNodeGroupAmount, getActivity(), this);
+        NodeRecycleViewAdapter adapter = new NodeRecycleViewAdapter(mNodeGroupNames, mNodeGroupAmount, mBatteryErrors, getActivity(), this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -119,11 +123,11 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
     @Override
     public void onGroupClick(int position) {
 
-        //TODO CREATE NEW ACTIVITY
         Intent intent = new Intent(getActivity(), SelectedNodeGroup.class);
 
         intent.putExtra("nodeName", mNodeGroupNames.get(position));
-        startActivity(intent);
+        intent.putExtra("id", mNodeGroupIds.get(position));
+
         startActivity(intent);
 
     }
