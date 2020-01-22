@@ -52,7 +52,6 @@ public class GatewayConnect extends Fragment {
 
         button = root.findViewById(R.id.buttonProgress);
         button.setEnabled(false);
-        button.setText("Connection found");
 
 
         // TODO: add delay to mock internet connection setup
@@ -84,6 +83,8 @@ public class GatewayConnect extends Fragment {
                             mTimer.cancel();
                             mTimer.purge();
                             button.setEnabled(true);
+                            button.setCompoundDrawablesWithIntrinsicBounds( null, null, getActivity().getDrawable(R.drawable.ic_arrow_forward_white_24dp) ,null);
+
                             Toast toast = Toast.makeText(getContext(),"Connection found", Toast.LENGTH_LONG);
                             toast.setGravity(Gravity.CENTER, 0, -180);
                             toast.show();

@@ -18,7 +18,6 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 public class NodeGroupNameActivity extends AbstractAddNodeActivity {
 
     String name;
-    Button button;
     EditText editText;
 
     @Override
@@ -37,7 +36,6 @@ public class NodeGroupNameActivity extends AbstractAddNodeActivity {
 
         textView.setText("Enter group name");
 
-        button.setText("Looking good!");
         button.setEnabled(false);
     }
 
@@ -63,6 +61,8 @@ public class NodeGroupNameActivity extends AbstractAddNodeActivity {
                     button.setEnabled(false);
                 } else {
                     button.setEnabled(true);
+                    setButtonCollor();
+
                 }
             }
 

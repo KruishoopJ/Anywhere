@@ -25,12 +25,10 @@ public class NodeOverviewActivity extends AbstractAddNodeActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_node_overview);
         addToolbar();
-        enableBackButton(true);
         setToolbarTitle("Node Overview");
         Intent i = getIntent();
         nodeGroups = (NodeGroups) i.getSerializableExtra("mNodeGroups");
         initRecyclerView();
-
 
         button = findViewById(R.id.buttonProgress);
 
@@ -39,7 +37,6 @@ public class NodeOverviewActivity extends AbstractAddNodeActivity {
 
         // Set textview to scan node
         textView.setText("Scanned nodes");
-        button.setText("Next");
 
     }
 
@@ -54,6 +51,8 @@ public class NodeOverviewActivity extends AbstractAddNodeActivity {
                 openLightConfigActivity();
             }
         });
+        setButtonCollor();
+
 
     }
 

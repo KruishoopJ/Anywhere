@@ -1,3 +1,9 @@
+/*
+
+Hoofd settings pagina. Maakt gebruik van SettingsRecyclerview voor de content
+*/
+
+
 package nl.johnbaaij.anywhere.main.settings;
 
 import android.app.AlertDialog;
@@ -54,6 +60,8 @@ public class SettingsFragment extends AbstractFragment implements SettingsRecycl
         return root;
     }
 
+
+    //Names for the settings
     private void initNodeText() {
         mSettingLabels.add(getResources().getString(R.string.profile));
         mSettingLabels.add(getResources().getString(R.string.support));
@@ -80,7 +88,7 @@ public class SettingsFragment extends AbstractFragment implements SettingsRecycl
 
 
     }
-
+    //change the activity based on the click position
     protected void changeActivity(int itemNumber) {
 
         Intent intent;
@@ -99,6 +107,8 @@ public class SettingsFragment extends AbstractFragment implements SettingsRecycl
                 startActivity(intent);
                 break;
             case 3:
+
+                //this shows an alert for the Firebase logout.
                 AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
                 alert.setTitle("Logout");
                 alert.setMessage("Do you want to logout?");

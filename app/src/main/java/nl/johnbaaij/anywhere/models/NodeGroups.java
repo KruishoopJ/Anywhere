@@ -1,3 +1,13 @@
+
+/*
+
+Deze class maakt een object voor de nodegroupen.
+Deze wordt gebruikt voor Google Firebase
+
+Auteur: John Baaij
+*/
+
+
 package nl.johnbaaij.anywhere.models;
 
 import java.io.Serializable;

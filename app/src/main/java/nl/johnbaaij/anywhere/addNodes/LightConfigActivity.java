@@ -30,13 +30,14 @@ public class LightConfigActivity extends AbstractAddNodeActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private FirebaseAuth mAuth;
     FirebaseUser user;
-    Button button;
 
 
     @Override
     protected void onStart() {
         super.onStart();
         moveProgress(5);
+        setButtonCollor();
+
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +66,6 @@ public class LightConfigActivity extends AbstractAddNodeActivity {
         enableBackButton(true);
         setToolbarTitle("Configure your lights");
         button = findViewById(R.id.buttonProgress);
-        button.setText("Confirm");
         textView.setText("Set the type of light");
 
     }

@@ -1,3 +1,11 @@
+/*
+
+Deze activity laat een faq zien in een recyclerview
+Auteur: John Baaij
+*/
+
+
+
 package nl.johnbaaij.anywhere;
 
 
@@ -32,11 +40,13 @@ public class FaqActivity extends AbstractToolbarActivity {
 
     }
 
+
+    //create the faq
     private void fillList(){
         faq.add("Wat is een gateway");
     }
 
-
+    //start recyclerview
     private void initRecyclerView() {
         RecyclerView recyclerView = this.findViewById(R.id.faq_recyclerView);
         DividerItemDecoration itemDecor = new DividerItemDecoration(getApplicationContext(), HORIZONTAL);

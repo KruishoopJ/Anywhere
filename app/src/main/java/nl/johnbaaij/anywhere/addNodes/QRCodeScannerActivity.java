@@ -10,8 +10,6 @@ import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.Toast;
-
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -71,7 +69,6 @@ public class QRCodeScannerActivity extends AbstractAddNodeActivity {
         addToolbar();
         setToolbarTitle("Scan your nodes");
 
-        enableBackButton(true);
 
         // Set values
         surfaceView = findViewById(R.id.qrCodeScanner);
@@ -91,7 +88,6 @@ public class QRCodeScannerActivity extends AbstractAddNodeActivity {
         cameraSource = new CameraSource.Builder(this, barcodeDetector)
                 .setRequestedPreviewSize(640, 480).setAutoFocusEnabled(true).build();
 
-        button.setText("All nodes scanned");
 
 
         // Use surface view
@@ -147,29 +143,24 @@ public class QRCodeScannerActivity extends AbstractAddNodeActivity {
                             if (scannedText != lastScannedCode) {
                                 // TODO: if scannedText already exists in database: Prompt: "Do you want to reinstall/move this node" or "this node is properly installed"
                                 if (isQuantified) {
-                                    nodeConfirmed(scannedText);
-                                    vibrator.vibrate(100);
-                                    button.setEnabled(true);
-                                    lastScannedCode = scannedText;
 
+                                    if (!scannedCodes.contains(scannedText)){
+                                        nodeConfirmed(scannedText);
+                                        vibrator.vibrate(100);
+                                        button.setEnabled(true);
+                                        setButtonCollor();
+                                        lastScannedCode = scannedText;
+                                        textView.setText(scannedText +" added");
+                                    }
 
-
-                                } else {
-
-                                    Toast.makeText(QRCodeScannerActivity.this, "\"This is not a Quantified product",
-                                            Toast.LENGTH_LONG).show();
-                                    //vibrator.vibrate(100);
-                                    //cameraSource.stop();
-
-                                }
-
+                                    else
+                                        textView.setText("This node was already added");
+                                } else
+                                    textView.setText("This is not a Quantified product");
                             }
 
-                            else{
-                                Toast.makeText(QRCodeScannerActivity.this, "\"This node is already added",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-
+                            else
+                                textView.setText("This node is already added");
 
                             // Wait 200ms before opening camera
                             Handler handler = new Handler();
@@ -182,7 +173,6 @@ public class QRCodeScannerActivity extends AbstractAddNodeActivity {
                                         //TODO on error
                                         e.printStackTrace();
                                     }
-
                                 }
                             }, 200);
                         }

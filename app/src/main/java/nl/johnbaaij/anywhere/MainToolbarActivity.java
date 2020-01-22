@@ -1,4 +1,9 @@
+/*
 
+Deze activity is de start van de applicatie en zorgt onder andere van voor de navigatie onder aan het scherm.
+Ook wordt er op een account gechecked. Als deze er niet is wordt het doorgelinkt naar Firebase
+  Auteur: John Baaij
+*/
 
 
 
@@ -7,7 +12,6 @@ package nl.johnbaaij.anywhere;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -22,7 +26,6 @@ import nl.johnbaaij.anywhere.abstractClasses.AbstractToolbarActivity;
 public class MainToolbarActivity extends AbstractToolbarActivity {
 
     public static Context contextOfApplication;
-
     private FirebaseAuth mAuth;
 
     @Override
@@ -61,6 +64,8 @@ public class MainToolbarActivity extends AbstractToolbarActivity {
 
         //Firebase authentication enabled
         if (currentUser == null) {
+
+            //start login is there isn't a logged in user
             startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             finish();
         }

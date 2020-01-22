@@ -1,3 +1,11 @@
+/*
+
+Deze activity zorgt voor het inloggen van de applicatie. De handleiding binnen Android Studio voor het inloggen is hiervoor gebruikts
+  Auteur: John Baaij
+*/
+
+
+
 package nl.johnbaaij.anywhere;
 
 import android.content.Intent;
@@ -63,6 +71,8 @@ public class LoginActivity extends AbstractToolbarActivity implements GoogleApiC
             }
         });
 
+
+        //inloggen via Google
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -123,6 +133,9 @@ public class LoginActivity extends AbstractToolbarActivity implements GoogleApiC
 
     }
 
+
+
+    //login for email password
     private void loginUserAccount() {
         progressBar.setVisibility(View.VISIBLE);
 

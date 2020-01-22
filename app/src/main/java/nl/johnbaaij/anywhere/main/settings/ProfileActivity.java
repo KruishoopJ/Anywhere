@@ -1,5 +1,9 @@
 package nl.johnbaaij.anywhere.main.settings;
 
+/*
+
+Dit laat het profiel zien vanuit Firebase. Op dit moment is het niet mogelijk om de gegevens aan te passen*/
+
 
 import android.os.Bundle;
 import android.widget.TextView;
@@ -53,6 +57,8 @@ public class ProfileActivity extends AbstractToolbarActivity {
 
     }
 
+    //TODO replace with quantified system
+    //email accounts don't contain a name. This adds a fake name
     private void checkUserInfo(FirebaseUser user) {
         String i = user.getDisplayName();
         String j = user.getPhoneNumber();

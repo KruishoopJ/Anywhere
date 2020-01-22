@@ -1,3 +1,13 @@
+/*
+
+Deze activity geeft een webview weer met een de terms en conditions.
+Als prototype worden de terms en conditions van Google gerbruikt
+
+Auteur: John Baaij
+*/
+
+
+
 package nl.johnbaaij.anywhere.main.settings;
 
 import android.os.Bundle;

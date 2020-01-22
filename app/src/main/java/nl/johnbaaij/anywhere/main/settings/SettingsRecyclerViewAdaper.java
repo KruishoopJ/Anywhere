@@ -1,3 +1,12 @@
+/*
+
+Dit is de recyclerview voor de settings. Dit is een simpele list die doorverwijst naar de bijbehorende activity
+
+*/
+
+
+
+
 package nl.johnbaaij.anywhere.main.settings;
 
 import android.content.Context;
@@ -8,6 +17,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -16,7 +28,7 @@ import nl.johnbaaij.anywhere.R;
 
 public class SettingsRecyclerViewAdaper extends RecyclerView.Adapter<SettingsRecyclerViewAdaper.ViewHolder> {
 
-
+    //labels for the settings
     private ArrayList<String> mNodeGroupNames = new ArrayList<>();
     private OnSettingListener mOnsettingListener;
     private Context mContext;

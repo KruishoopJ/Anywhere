@@ -1,5 +1,7 @@
 package nl.johnbaaij.anywhere.abstractClasses;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -7,6 +9,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import nl.johnbaaij.anywhere.FaqActivity;
+import nl.johnbaaij.anywhere.LoginActivity;
+import nl.johnbaaij.anywhere.MainToolbarActivity;
 import nl.johnbaaij.anywhere.R;
 import nl.johnbaaij.anywhere.models.NodeGroups;
 
@@ -17,6 +21,11 @@ public class AbstractAddNodeActivity extends AbstractToolbarActivity {
     protected TextView textView;
     protected ImageView progress1, progress2, progress3, progress4, progress5;
     protected NodeGroups nodeGroups;
+
+
+    protected void setButtonCollor(){
+        button.setCompoundDrawablesWithIntrinsicBounds( null, null, this.getDrawable(R.drawable.ic_arrow_forward_white_24dp) ,null);
+    }
 
 
     @Override
@@ -40,6 +49,30 @@ public class AbstractAddNodeActivity extends AbstractToolbarActivity {
         Intent intent = new Intent(AbstractAddNodeActivity.this, FaqActivity.class);
         startActivity(intent);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        // your code.
+
+        //this shows an alert to lose your progress
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Are you sure ?");
+        alert.setMessage("You will loose all your progress");
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                Intent intent = new Intent(AbstractAddNodeActivity.this, MainToolbarActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        alert.setNegativeButton("No", null
+        );
+
+        alert.create().show();
     }
 
 
