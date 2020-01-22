@@ -1,3 +1,14 @@
+/*
+
+Deze recyclerview maakt een list van alle nodegroups. Deze laten de hoeveelheid, de naam en eventuele errors zien.
+Op dit moment zijn de errors handmatig toegevoegd aangezien dit nog niet echt gerealiseerd kan worden.
+
+  Auteur: John Baaij
+*/
+
+
+
+
 package nl.johnbaaij.anywhere.main.nodes;
 
 import android.content.Context;
@@ -17,7 +28,7 @@ import nl.johnbaaij.anywhere.R;
 
 public class NodeRecycleViewAdapter extends RecyclerView.Adapter<NodeRecycleViewAdapter.ViewHolder> {
 
-
+    //TODO create object of this
     private ArrayList<String> mNodeGroupNames = new ArrayList<>();
     private ArrayList<Integer> mNodeGroupAmount = new ArrayList<>();
     private ArrayList<Boolean> mBatteryErrors = new ArrayList<>();
@@ -45,7 +56,7 @@ public class NodeRecycleViewAdapter extends RecyclerView.Adapter<NodeRecycleView
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.nodeGroupName.setText(mNodeGroupNames.get(position));
         holder.nodeAmount.setText(mNodeGroupAmount.get(position).toString());
-
+        //Show a battery warning.
         if (mBatteryErrors.get(position)){
             holder.errorView.setBackground(holder.itemView.getResources().getDrawable(R.drawable.ic_battery_alert_black_24dp));
         }
@@ -66,6 +77,8 @@ public class NodeRecycleViewAdapter extends RecyclerView.Adapter<NodeRecycleView
 
         public ViewHolder(@NonNull View itemView, OnGroupListener onGroupListener) {
             super(itemView);
+
+            //Elements of the vieuw
             parentLayout = itemView.findViewById(R.id.parent_layout);
             nodeGroupName = itemView.findViewById(R.id.nodeGroupName);
             nodeAmount = itemView.findViewById(R.id.nodeAmount);
@@ -82,7 +95,9 @@ public class NodeRecycleViewAdapter extends RecyclerView.Adapter<NodeRecycleView
         }
     }
 
-    public void deleteItem(int position) {
+
+    //This code is for future development. its to swipe and delete the node data
+    void deleteItem(int position) {
         //mRecentlyDeletedItem = mListItems.get(position);
         //mRecentlyDeletedItemPosition = position;
         mNodeGroupNames.remove(position);

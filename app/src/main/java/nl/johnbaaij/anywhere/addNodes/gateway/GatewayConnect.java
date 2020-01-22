@@ -1,5 +1,14 @@
 package nl.johnbaaij.anywhere.addNodes.gateway;
 
+/*
+
+Dit fragment faked het zoeken naar een gateway door middel van een timer
+Als deze timer afloopt wordt de buttom beschikbaar om naar het volgende scherm te gaan.
+
+Auteur: John Baaij
+*/
+
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;

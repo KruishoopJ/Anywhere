@@ -1,5 +1,12 @@
 package nl.johnbaaij.anywhere.addNodes;
 
+/*
+Deze activity toons de gateway fragment en vraagt om de camera toestemming
+
+
+Auteur: John Baaij
+*/
+
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;

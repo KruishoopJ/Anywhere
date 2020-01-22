@@ -1,3 +1,12 @@
+/*
+
+Deze fragment laat alle nodes zien. Hier van uit kan ook worden aangeroepen dat er nodes moeten worden toegevoegd.
+
+  Auteur: John Baaij
+*/
+
+
+
 package nl.johnbaaij.anywhere.main.nodes;
 
 import android.content.Context;
@@ -72,16 +81,22 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
 
     }
 
+
+    //THis method retrieves the data from the database
     private void getData(Context context) {
         final NodeGroupDatabase appDb = NodeGroupDatabase.getInstance(context);
 
+        //This is required to run in the backrgound.
         Executor myExecutor = Executors.newSingleThreadExecutor();
         myExecutor.execute(new Runnable() {
             @Override
             public void run() {
                 final List<NodeGroup> nodeGroups = appDb.nodegroupDao().getNodeGroupList();
                 if (nodeGroups.size() != 0) {
+
+
                     for (int i = 0; i < nodeGroups.size(); i++) {
+                        //This adds it individualy to an object.
                         mNodeGroupNames.add(nodeGroups.get(i).groupname);
                         mNodeGroupAmount.add(nodeGroups.get(i).amount);
                         mNodeGroupIds.add(nodeGroups.get(i).uid);
@@ -95,6 +110,8 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
 
     }
 
+    //Create the recyclerview
+
     private void initRecyclerView(View root) {
         RecyclerView recyclerView = root.findViewById(R.id.node_recyclerView);
         DividerItemDecoration itemDecor = new DividerItemDecoration(getActivity(), HORIZONTAL);
@@ -103,6 +120,8 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+
+        //This is to delete the nodegroups in future development
         //ItemTouchHelper itemTouchHelper = new
           //      ItemTouchHelper(new NodeDelete(adapter));
         //itemTouchHelper.attachToRecyclerView(recyclerView);
@@ -120,7 +139,6 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
 
         switch (v.getId()) {
             case R.id.addNodeButton:
-                // Do something 
 
                 Log.d(TAG, "onClick: dit werkt nu ");
                 openAddNodeActivity();
@@ -128,7 +146,7 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
 
     }
 
-
+    //This opens the group to show a more specific view of the collected data
     @Override
     public void onGroupClick(int position) {
 

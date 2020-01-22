@@ -59,8 +59,8 @@ public class LightConfigActivity extends AbstractAddNodeActivity {
         Intent i = getIntent();
         nodeGroups = (NodeGroups) i.getSerializableExtra("mNodeGroups");
         textView = findViewById(R.id.ProgressText);
+        mAuth = authencicate();
 
-        mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         addToolbar();
         enableBackButton(true);
@@ -68,6 +68,11 @@ public class LightConfigActivity extends AbstractAddNodeActivity {
         button = findViewById(R.id.buttonProgress);
         textView.setText("Set the type of light");
 
+    }
+
+    public FirebaseAuth authencicate(){
+        mAuth = FirebaseAuth.getInstance();
+        return mAuth;
     }
 
     private void openMainActivity() {

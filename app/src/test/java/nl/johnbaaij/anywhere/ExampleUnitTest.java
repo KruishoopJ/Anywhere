@@ -2,6 +2,10 @@ package nl.johnbaaij.anywhere;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+
+import nl.johnbaaij.anywhere.addNodes.QRCodeScannerActivity;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -14,4 +18,8 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+
+
+
+
 }

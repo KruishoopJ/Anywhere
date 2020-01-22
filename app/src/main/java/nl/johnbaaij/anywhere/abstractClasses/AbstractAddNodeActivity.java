@@ -1,5 +1,13 @@
 package nl.johnbaaij.anywhere.abstractClasses;
 
+/*
+Dit fragment vervangt AbstractToolbarActivity en wordt gebruikt in het installatie process. Er worden hierin functies en objecten
+gedefineerd die in deze classes herhaaldelijk voorkomen. zoals het terug menu
+
+Er word gebruik gemaakt van een custom toolbar die hierin wordt gedefineerd
+Auteur: John Baaij
+*/
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,6 +16,9 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+
 import nl.johnbaaij.anywhere.FaqActivity;
 import nl.johnbaaij.anywhere.LoginActivity;
 import nl.johnbaaij.anywhere.MainToolbarActivity;
@@ -75,7 +86,12 @@ public class AbstractAddNodeActivity extends AbstractToolbarActivity {
         alert.create().show();
     }
 
+    public NodeGroups createGroup(String name, String lightConfig, ArrayList<String> list, boolean light, boolean warning, boolean battery ){
+        NodeGroups group = new NodeGroups(name, lightConfig, list,light, warning, battery );
+        return group;
+    }
 
+    //Dit is voor de progressbar die wordt gevuld.
     public void moveProgress(int screen) {
 
         progress1 = findViewById(R.id.progress_dot3);

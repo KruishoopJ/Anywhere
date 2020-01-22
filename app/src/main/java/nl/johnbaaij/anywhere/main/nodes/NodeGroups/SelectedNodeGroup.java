@@ -1,3 +1,11 @@
+
+/*
+
+Deze activity laat overzicht van de gemiddelde data van de nodes zien. Deze data is op dit moment nog niet echt
+  Auteur: John Baaij
+*/
+
+
 package nl.johnbaaij.anywhere.main.nodes.NodeGroups;
 
 import android.content.Intent;
@@ -40,6 +48,7 @@ public class SelectedNodeGroup extends AbstractToolbarActivity {
 
         Intent i = getIntent();
 
+        //The name in the top bar comes from Google Firebase
         addToolbar();
         String name = (String) i.getSerializableExtra("nodeName");
         setToolbarTitle("Average of "+name);
@@ -68,6 +77,7 @@ public class SelectedNodeGroup extends AbstractToolbarActivity {
 
     }
 
+    //This is for future development to get the data from the firebase server
     private void showData(DataSnapshot dataSnapshot) {
 
         for (DataSnapshot ds : dataSnapshot.getChildren()){

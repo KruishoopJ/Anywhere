@@ -9,6 +9,14 @@ import nl.johnbaaij.anywhere.MainToolbarActivity;
 import nl.johnbaaij.anywhere.models.NodeGroups;
 
 
+/*
+
+Deze class voert de daadwerkelijke queries uit. Vanwege snelheidsoverwegingen is het een vereiste dat deze in een andere thread worden uitgevoerd
+
+Auteur: John Baaij
+*/
+
+
 public class SaveToDatabase {
 
 
@@ -22,6 +30,8 @@ public class SaveToDatabase {
         myExecutor.execute(new Runnable() {
             @Override
             public void run() {
+
+                //Roept de query aan
                 appDb.nodegroupDao().insertNodegroup(nodeGroup);
             }
         });
@@ -38,6 +48,9 @@ public class SaveToDatabase {
             public void run() {
                final int amount =appDb.nodegroupDao().getCount();
                if (amount ==0){
+
+                   //Roept de query aan
+
                    Executor myExecutor = Executors.newSingleThreadExecutor();
                    myExecutor.execute(new Runnable() {
                        @Override

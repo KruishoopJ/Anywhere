@@ -1,5 +1,11 @@
 package nl.johnbaaij.anywhere.addNodes.NodeOverview;
 
+/*
+
+Dit is een lijst van de gescande nodes
+Auteur: John Baaij
+*/
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

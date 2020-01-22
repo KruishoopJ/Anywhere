@@ -1,3 +1,9 @@
+/*
+
+Dit is de QR code scanner binnen de applicatie
+
+Auteur: Martijn Totte
+*/
 package nl.johnbaaij.anywhere.addNodes;
 
 import android.content.Context;
@@ -33,6 +39,7 @@ public class QRCodeScannerActivity extends AbstractAddNodeActivity {
     ArrayList<String> scannedCodes;
     Vibrator vibrator;
     String lastScannedCode;
+    NodeGroups nodeGroups;
 
     private void openNodeOverviewActivity() {
         // TODO: build universal method with paramater -> class
@@ -123,6 +130,8 @@ public class QRCodeScannerActivity extends AbstractAddNodeActivity {
 
             }
 
+
+            //Daadwerkelijke lezer
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 // Get data
@@ -144,7 +153,15 @@ public class QRCodeScannerActivity extends AbstractAddNodeActivity {
                                 // TODO: if scannedText already exists in database: Prompt: "Do you want to reinstall/move this node" or "this node is properly installed"
                                 if (isQuantified) {
 
+                                    //Als de qr de tekst quantified bevat
+
                                     if (!scannedCodes.contains(scannedText)){
+
+
+                                        if (nodeConfirmed(scannedText)) {
+                                            scannedCodes.add(scannedText);
+                                            cameraSource.stop();
+                                        }
                                         nodeConfirmed(scannedText);
                                         vibrator.vibrate(100);
                                         button.setEnabled(true);
@@ -154,12 +171,17 @@ public class QRCodeScannerActivity extends AbstractAddNodeActivity {
                                     }
 
                                     else
+                                        //Als een node al bestaat
                                         textView.setText("This node was already added");
                                 } else
+
+                                    //Als het een andere node is
                                     textView.setText("This is not a Quantified product");
                             }
 
                             else
+                                //Als een node al bestaat
+
                                 textView.setText("This node is already added");
 
                             // Wait 200ms before opening camera
@@ -182,7 +204,7 @@ public class QRCodeScannerActivity extends AbstractAddNodeActivity {
         });
     }
 
-    private void nodeConfirmed(String scannedText) {
+    public boolean nodeConfirmed(String scannedText) {
 
         lastScannedCode = scannedText;
 
@@ -190,10 +212,10 @@ public class QRCodeScannerActivity extends AbstractAddNodeActivity {
         // if it's not it's added to the arraylist scannedCodes
         int totalCount = Collections.frequency(scannedCodes, scannedText);
         if (totalCount != 0) {
+            return false;
 
         } else {
-            scannedCodes.add(scannedText);
-            cameraSource.stop();
+            return true;
         }
     }
 }

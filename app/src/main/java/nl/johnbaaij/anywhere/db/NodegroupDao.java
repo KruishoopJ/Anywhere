@@ -1,5 +1,12 @@
 package nl.johnbaaij.anywhere.db;
 
+/*
+
+Deze class bevat queries die met AndroidX Room kunnen worden uitgevoerd in de NoSQL database https://developer.android.com/jetpack/androidx/releases/room
+Auteur: John Baaij
+*/
+
+
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;

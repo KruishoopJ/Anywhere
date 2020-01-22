@@ -1,3 +1,11 @@
+/*
+
+Dit wordt gebtuikt on de nodes dmv een swipe te verwijderen. Dit wordt gebruikt in de recyclerview
+  Auteur: John Baaij
+*/
+
+
+
 package nl.johnbaaij.anywhere.main.nodes;
 
 import android.graphics.Canvas;
@@ -29,18 +37,22 @@ public class NodeDelete extends ItemTouchHelper.SimpleCallback {
                 R.drawable.ic_delete_black_24dp);
     }
 
-
+    //This is required. It's zo move up and down but it isn't used
     @Override
     public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
         return false;
     }
 
+
+    //The deleted data is only temporary removed
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
         int position = viewHolder.getAdapterPosition();
         mAdapter.deleteItem(position);
     }
 
+
+    //This makes it red on a swipe motion and adds an icon with it. The swiping motion works only in one way
     @Override
     public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
         super.onChildDraw(c, recyclerView, viewHolder, dX,

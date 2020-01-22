@@ -1,3 +1,13 @@
+/*
+
+Deze class maakt een NOSQl database aan waarin de data wordt opgeslagen. Er is gebruikt gemaakt van Room uit AndroidX https://developer.android.com/jetpack/androidx/releases/room
+Deze class is in feite een tabel
+
+Auteur: John Baaij
+*/
+
+
+
 package nl.johnbaaij.anywhere.db;
 
 import androidx.room.ColumnInfo;

@@ -1,3 +1,10 @@
+
+/*
+
+Deze activity bevat een list waarin alle zojuist gescande nodes worden getoont
+Auteur: John Baaij
+*/
+
 package nl.johnbaaij.anywhere.addNodes;
 
 

@@ -1,5 +1,11 @@
 package nl.johnbaaij.anywhere.addNodes.gateway;
 
+/*
+
+Gemaakt door Android studio
+*/
+
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;

@@ -1,5 +1,13 @@
 package nl.johnbaaij.anywhere.abstractClasses;
 
+/*
+Deze activity vervangt de standaard activity AppCompatActivity
+
+Er word gebruik gemaakt van een custom toolbar die hierin wordt gedefineerd
+Auteur: John Baaij
+*/
+
+
 
 import android.content.SharedPreferences;
 import android.view.MenuItem;
@@ -12,11 +20,8 @@ import nl.johnbaaij.anywhere.R;
 public abstract class AbstractToolbarActivity extends AppCompatActivity {
 
     Toolbar toolbar;
-    protected SharedPreferences sharedPreferences;
 
-    public AbstractToolbarActivity() {
 
-    }
 
     protected void setToolbarTitle(String title) {
         getSupportActionBar().setTitle(title);

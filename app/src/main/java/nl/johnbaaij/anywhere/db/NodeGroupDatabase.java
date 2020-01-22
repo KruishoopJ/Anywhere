@@ -1,5 +1,13 @@
 package nl.johnbaaij.anywhere.db;
 
+
+/*
+
+Deze class beheert de NoSQL database. Alle tabellen worden hier in verwerkt
+Auteur: John Baaij
+*/
+
+
 import android.content.Context;
 
 import androidx.room.Database;
@@ -8,7 +16,7 @@ import androidx.room.RoomDatabase;
 
 import nl.johnbaaij.anywhere.MainToolbarActivity;
 
-@Database(entities = NodeGroup.class, exportSchema = false, version = 4)
+@Database(entities = NodeGroup.class, exportSchema = false, version = 4)//Dit is de metadata van de Database
 public abstract class NodeGroupDatabase extends RoomDatabase {
 
     private static final String DB_NAME = "node_db";
