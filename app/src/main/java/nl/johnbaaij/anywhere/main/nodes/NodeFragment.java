@@ -94,9 +94,9 @@ public class NodeFragment extends AbstractFragment implements View.OnClickListen
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        ItemTouchHelper itemTouchHelper = new
-                ItemTouchHelper(new NodeDelete(adapter));
-        itemTouchHelper.attachToRecyclerView(recyclerView);
+        //ItemTouchHelper itemTouchHelper = new
+          //      ItemTouchHelper(new NodeDelete(adapter));
+        //itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
     private void openAddNodeActivity() {

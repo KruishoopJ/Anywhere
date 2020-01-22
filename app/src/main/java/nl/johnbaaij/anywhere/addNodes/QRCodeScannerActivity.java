@@ -34,7 +34,7 @@ public class QRCodeScannerActivity extends AbstractAddNodeActivity {
     BarcodeDetector barcodeDetector;
     ArrayList<String> scannedCodes;
     Vibrator vibrator;
-    String lastScannedCode = "";
+    String lastScannedCode;
 
     private void openNodeOverviewActivity() {
         // TODO: build universal method with paramater -> class
@@ -82,6 +82,7 @@ public class QRCodeScannerActivity extends AbstractAddNodeActivity {
 
         // Set textview to scan node
         textView.setText("Scan node");
+        button.setEnabled(false);
 
         //Initialise barcode detector
         barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
@@ -148,17 +149,25 @@ public class QRCodeScannerActivity extends AbstractAddNodeActivity {
                                 if (isQuantified) {
                                     nodeConfirmed(scannedText);
                                     vibrator.vibrate(100);
+                                    button.setEnabled(true);
+                                    lastScannedCode = scannedText;
+
+
 
                                 } else {
 
                                     Toast.makeText(QRCodeScannerActivity.this, "\"This is not a Quantified product",
                                             Toast.LENGTH_LONG).show();
-                                    vibrator.vibrate(100);
-                                    cameraSource.stop();
+                                    //vibrator.vibrate(100);
+                                    //cameraSource.stop();
 
                                 }
 
-                                lastScannedCode = scannedText;
+                            }
+
+                            else{
+                                Toast.makeText(QRCodeScannerActivity.this, "\"This node is already added",
+                                        Toast.LENGTH_SHORT).show();
                             }
 
 
@@ -184,6 +193,8 @@ public class QRCodeScannerActivity extends AbstractAddNodeActivity {
     }
 
     private void nodeConfirmed(String scannedText) {
+
+        lastScannedCode = scannedText;
 
         //this function checks if the qr code is previously scanned
         // if it's not it's added to the arraylist scannedCodes

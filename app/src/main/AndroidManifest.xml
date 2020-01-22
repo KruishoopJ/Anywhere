@@ -19,7 +19,6 @@
         <activity
             android:name=".addNodes.LightConfigActivity"
             android:label="@string/title_activity_light_config"
-            android:parentActivityName=".addNodes.NodeGroupNameActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -28,7 +27,6 @@
         <activity
             android:name=".addNodes.NodeGroupNameActivity"
             android:label="@string/title_activity_node_group_name"
-            android:parentActivityName=".addNodes.QRCodeScannerActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -40,13 +38,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".main.settings.TermsConToolbarActivity"
-            android:parentActivityName=".MainToolbarActivity" />
+             />
         <activity
             android:name=".main.settings.SupportToolbarActivity"
-            android:parentActivityName=".MainToolbarActivity" />
+             />
         <activity
             android:name=".main.settings.ProfileActivity"
-            android:parentActivityName=".MainToolbarActivity" />
+             />
         <activity android:name=".LoginActivity" />
         <activity
             android:name=".addNodes.GatewayActivity"

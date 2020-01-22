@@ -31,11 +31,13 @@ public class NodeGroupNameActivity extends AbstractAddNodeActivity {
 
         Intent i = getIntent();
         nodeGroups = (NodeGroups) i.getSerializableExtra("mNodeGroups");
-
+        textView = findViewById(R.id.ProgressText);
         button = findViewById(R.id.buttonProgress);
         editText = findViewById(R.id.NodeGoupNameInput);
 
-        button.setText("Confirm");
+        textView.setText("Enter group name");
+
+        button.setText("Looking good!");
         button.setEnabled(false);
     }
 

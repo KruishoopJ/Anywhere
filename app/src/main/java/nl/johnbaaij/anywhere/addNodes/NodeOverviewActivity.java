@@ -38,7 +38,8 @@ public class NodeOverviewActivity extends AbstractAddNodeActivity {
         textView = findViewById(R.id.ProgressText);
 
         // Set textview to scan node
-        textView.setText("Scan node");
+        textView.setText("Scanned nodes");
+        button.setText("Next");
 
     }
 

@@ -57,6 +57,7 @@ public class LightConfigActivity extends AbstractAddNodeActivity {
         saveToDatabase = new SaveToDatabase();
         Intent i = getIntent();
         nodeGroups = (NodeGroups) i.getSerializableExtra("mNodeGroups");
+        textView = findViewById(R.id.ProgressText);
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
@@ -65,6 +66,7 @@ public class LightConfigActivity extends AbstractAddNodeActivity {
         setToolbarTitle("Configure your lights");
         button = findViewById(R.id.buttonProgress);
         button.setText("Confirm");
+        textView.setText("Set the type of light");
 
     }
 
@@ -88,6 +90,7 @@ public class LightConfigActivity extends AbstractAddNodeActivity {
         saveToDatabase.saveToDB(nodeGroups, key);
         saveToDatabase.countDB(nodeGroups,key);
         openMainActivity();
+        finish();
 
     }
 

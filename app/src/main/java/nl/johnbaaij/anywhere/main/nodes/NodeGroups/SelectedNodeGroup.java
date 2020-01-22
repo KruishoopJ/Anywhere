@@ -19,6 +19,7 @@ import nl.johnbaaij.anywhere.abstractClasses.AbstractToolbarActivity;
 import nl.johnbaaij.anywhere.models.NodeGroups;
 
 
+
 public class SelectedNodeGroup extends AbstractToolbarActivity {
 
     private DatabaseReference mDatabase;
@@ -41,7 +42,7 @@ public class SelectedNodeGroup extends AbstractToolbarActivity {
 
         addToolbar();
         String name = (String) i.getSerializableExtra("nodeName");
-        setToolbarTitle(name);
+        setToolbarTitle("Average of "+name);
         id = (String) i.getSerializableExtra("id");
 
         enableBackButton(true);
@@ -73,6 +74,7 @@ public class SelectedNodeGroup extends AbstractToolbarActivity {
             NodeGroups groups = new NodeGroups();
             groups.setName(ds.child(user.getUid()).child(id).getValue(NodeGroups.class).getName());
             groups.setScannedCodes(ds.child(user.getUid()).child(id).getValue(NodeGroups.class).getScannedCodes());
+
         }
     }
 }
